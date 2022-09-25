@@ -6,7 +6,7 @@ navbar:
       href: index.html
     - text: "Acoustics Basics"
       href: acoustics_basics.html
-     - text: "VOT Notes"
+    - text: "VOT Notes"
       href: week2VOTnotes.html
     # - text: "Lecture 3"
     #   href: lecture3.html
