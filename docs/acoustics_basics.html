@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Acoustics basics</title>
+
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link rel="shortcut icon" href="images/logo.jpeg">
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">LAL6120</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Acoustics basics</h1>
+
+</div>
+
+
+<style type="text/css">
+  body{
+  font-size: 12pt;
+}
+</style>
+<div id="software-installation" class="section level1">
+<h1>Software installation</h1>
+<p>This course introduces you to some basics of instrumental phonetic
+analysis. You will need the following two pieces of software:</p>
+<ul>
+<li>Praat: Acoustic phonetic analysis software. It’s free and available
+<a href="http://www.praat.org">here</a>. Please download it and follow
+the installation instructions.</li>
+<li>R Studio: R is a statistical analysis language and R Studio is the
+user interface which allows you to do a variety of things with data,
+like modeling and visualizing. We’ll just scratch the outermost surface
+of what R allows you to do. But first you’ll need to have the R software
+(R Studio sits on top of the basic R software!). Go <a
+href="https://cran.rstudio.com/">here</a> to first download R onto your
+machine. Then download R Studio for free <a
+href="https://www.rstudio.com/products/rstudio/download/#download">here</a>.
+Here’s a nice <a
+href="https://www.youtube.com/watch?v=TFGYlKvQEQ4">video</a> that walks
+you through the process.</li>
+</ul>
+</div>
+<div id="acoustics-basics" class="section level1">
+<h1>Acoustics basics</h1>
+<p>Any course in phonetics will assume some basic understanding of how
+speech is produced and what the nature of the speech signal is like
+(i.e., what it’s made of and how it relates to the vocal apparatus).
+These notes are meant to give you a brief introduction of the basics of
+acoustics as it relates to speech sounds. This by no means comprehensive
+and you should be encouraged to seek out explanations for more difficult
+questions you might have about the details of speech acoustics. The
+internet is your friend, but there are plenty of books which can help
+you along the way. Ask me and I can offer some suggestions.</p>
+<hr />
+</div>
+<div id="the-speech-chain" class="section level1">
+<h1>The Speech Chain</h1>
+<p>The speech chain represents the nature of communicating a linguistic
+message via the vocal-audition apparatus.</p>
+<p align="center">
+<img src="images/speech-chain.jpg">
+</p>
+<p>In this course, we will be examining, in detail, the nature of:</p>
+<ul>
+<li><strong>Acoustics</strong>: the physical properties of sound</li>
+<li><strong>Production</strong>: the physical process of producing
+sounds</li>
+<li><strong>Perception</strong>: the psychological process of speech
+reception</li>
+</ul>
+</div>
+<div id="sound" class="section level1">
+<h1>Sound</h1>
+<p>Sound is essentially changes in air pressure that results from some
+sort of disturbance, like the smacking of a table top or the vibrating
+of vocal folds. For speech sounds, tiny changes in pressure are a result
+of air molecules beign set in motion by the movement of the vocal folds.
+These changes in air pressure between air molecules end up at the
+listener’s ear. This animated gif schematizes the general idea of some
+movement (the hand moving up) setting in to motion the rope. The change
+in air pressure is represented by the wave in the rope, which moves and
+ultimately reaches a target (or the listener’s ear).</p>
+<p><img
+src="https://ds055uzetaobb.cloudfront.net/uploads/RemWkGv8Lh-rope1.gif" /></p>
+<p>Molecules of air move in a random pattern, called <a
+href="https://en.wikipedia.org/wiki/Brownian_motion">Brownian motion</a>
+and collide with each other and other objects at a relatively constant
+pressure.</p>
+<p align="center">
+<img width="200" height="200" src="https://i.pinimg.com/originals/15/38/66/153866beb99a7ec456ae1e6b0d643aea.gif">
+</p>
+</div>
+<div id="airflow" class="section level1">
+<h1>Airflow</h1>
+<p>Air moves from an area high pressure to an area of low pressure in
+order to equalize → driving pressure. Air only moves when there is a
+pressure differential between the areas. If there is no difference in
+pressure between the two areas, there is no airflow. This is very
+important for speech, as will become clearer when we discuss place and
+manner of articulation.</p>
+</div>
+<div id="pressure" class="section level1">
+<h1>Pressure</h1>
+<div id="boyles-law" class="section level2">
+<h2>Boyle’s Law</h2>
+<p>Another important concept for our understanding of speech processes
+is that formulated by the English polymath, <a
+href="https://en.wikipedia.org/wiki/Robert_Boyle">Robert Boyle</a>.
+Boyle’s law characterized the relationship between the pressure of a gas
+and the volume of its container.</p>
+<blockquote>
+<p>Boyle’s Law says that that pressure and volume are inversely related.
+The bigger the container, the lower the pressure; the smaller the
+container, the higher the pressure of the gas within.</p>
+</blockquote>
+<p align="center">
+<img src="https://i.makeagif.com/media/9-27-2015/TnlTsV.gif">
+</p>
+<p>For our purposes, it’s useful to imagine the relationship between two
+containers, or the same container at different points in time. In the
+equation below, imagine a fixed mass of gas (ok, air). The relationship
+between the pressure of that gas and the volume of the container is
+constant. So increasing the volume would mean a decrease in pressure (so
+long as the mass of the gas is the same and the temperature doesn’t
+change).</p>
+<blockquote>
+<p><span class="math display">\[ P_1 V_1~ = P_2 V_2 \]</span></p>
+</blockquote>
+<p align="center">
+<img width="300" height="300" src="images/boylelaw.gif">
+</p>
+<p>We know that there are air molecule pressure changes, cumulatively,
+involved when the volume of the container shrinks or expands, but what
+exactly happens between individual air molecules?</p>
+</div>
+<div id="compressionrarefaction" class="section level2">
+<h2>Compression/Rarefaction</h2>
+<blockquote>
+<p>When air molecules collide there is a moment of high pressure. This
+is called <strong>compression</strong>. The idea here is simple and can
+be roughly analogized to the Boyle’s law examples above. Imagine the
+plunger and bottom wall of the piston are air molecules. As they
+approach each other (or are compressed), pressure between them
+increases.</p>
+</blockquote>
+<p>M<sub>1</sub>→→→→M<sub>1</sub> M<sub>2</sub><br />
+As M<sub>1</sub> approaches M<sub>2</sub> there is increasing pressure
+(compression)</p>
+<p align="center">
+<img height="150" width="500" src="images/compression.gif">
+</p>
+<blockquote>
+<p>When the molecule “bounces” back and overshoots its original
+position, it causes an area of low air density, resulting in low
+pressure → rarefaction</p>
+</blockquote>
+<p>M<sub>1</sub> ← M<sub>1</sub> ←←← M<sub>2</sub><br />
+As M<sub>1</sub> moves away from M<sub>2</sub> there is decreasing
+pressure (rarefaction)</p>
+<p>Here is a nice <a
+href="https://www.youtube.com/watch?v=bYoTRx6gGX0">video
+demonstration</a> and explanation of compression and rarefaction of air
+molecules.</p>
+</div>
+</div>
+<div id="simple-harmonic-motion" class="section level1">
+<h1>Simple harmonic motion</h1>
+<p>Simple harmonic motion (SHM) results when the restoring force on an
+object is proportional to the displacement from equilibrium in the
+opposite direction. SHM is a special type of periodic motion (we’ll
+discuss periodicity below) that refers to the a back and forth motion
+that repeats itself at regular intervals.</p>
+<p>With SHM, there is acceleration of an object through the “zero point”
+or equilibrium and deceleration at the endpoints of the movement. In the
+animation below, the weight’s equilibrium point (or the spring’s natural
+length) would be represented by y=0.</p>
+<p align="center">
+<img src="images/pendulumshm.gif">
+</p>
+<div id="frequency" class="section level2">
+<h2>Frequency</h2>
+<p>One back and forth movement through the equilibriam point constitutes
+one <em>cycle</em> of vibration.When describing sound, these cycles
+refer to the movement of air molecules moving back and forth. When the
+molecule is set into motion (from some disturbance, like the movement of
+the vocal folds or the slamming of a door), it is propelled, reaches
+some maximum, travels back through its original starting point
+(equilibrium) and proceeds again in the direction opposite the one it
+initially travelled, then back again to equilibrium (one complete
+cycle).</p>
+<p>This movement results in pressure changes. A cycle when describing
+sound is:</p>
+<blockquote>
+<p>One cycle = increase in P from P<sub>atm</sub> (compression), a
+decrease in P below to P<sub>atm</sub> (rarefaction), then increase back
+to equilibrium The number of cycles completed in one second is called
+the <strong>frequency</strong> and is measured in Hertz (Hz)</p>
+</blockquote>
+<p>For speech, we very often encounter frequencies in the thousands, so
+instead of writing, say, 5600 Hz, we might change the units to kilohertz
+(1000 Hz) giving us 5.6kHz.</p>
+<p><a href="https://youtu.be/pANIvSh2r2A">Here</a> is a strobe video of
+a tuning fork. The tines (or arms) of the fork vibrate in unison, moving
+away from equilibrium, reaching a maximum displacement, then back toward
+the center and beyond, then back again.</p>
+</div>
+<div id="period" class="section level2">
+<h2>Period</h2>
+<blockquote>
+<p>The <strong>period</strong> of a waveform is the time it takes for
+one cycle to occur</p>
+</blockquote>
+<p>Period is inversly proportional to frequency. So: <span
+class="math display">\[F = 1/t ; t = 1/F\]</span> If the frequency is
+100Hz (or 100 cycles per second), then the period is 1/100 or 0.01
+seconds. Period is symbolized as <em>t</em>.</p>
+Here’s a little practice question: If <em>t</em> = 0.003, then what is
+the frequency? <!-- Answer options go here -->
+<div class="radio">
+<p><label>
+<input type="radio" name="question01" id="opt1" value="33kHz" onchange="check_answer()">
+33kHz </label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question01" id="opt2" value="300Hz" onclick="check_answer()">
+300Hz </label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question01" id="opt3" value="333kHz" onclick="check_answer()">
+333kHz </label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question01" id="opt3" value="333Hz" onclick="check_answer()">
+333Hz </label></p>
+</div>
+<!-- Check answer button -->
+<div>
+<button class="btn btn-primary" type="button" onclick="check_answer()" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+Show / Hide result
+</button>
+</div>
+<div id="collapseExample" class="collapse">
+<div id="answerFeedback" class="card card-body">
+<pre><code>The answer selected was ...</code></pre>
+</div>
+</div>
+<!-- Code to update answer feedback -->
+<script type="text/javascript">
+function check_answer()
+{
+    var radioButtons = document.getElementsByName("question01");
+    document.getElementById("answerFeedback").innerHTML = "Try selecting an answer!!";
+    for(var i = 0; i < radioButtons.length; i++)
+    {
+        if(radioButtons[i].checked == true)
+        {
+            var selectedAnswer = "Your selected answer was " + radioButtons[i].value;
+            <!-- feedback for correct / incorrect response -->
+            var feedback = "Not quite! Have another go." 
+            if(radioButtons[i].value == "333Hz") {
+              feedback = "Yup, good job! 1/0.003 = 333"
+            }
+            document.getElementById("answerFeedback").innerHTML = selectedAnswer + "<br>" + feedback;
+            return true;
+        }
+    }
+}
+</script>
+<p><br />
+</p>
+</div>
+<div id="wavelength" class="section level2">
+<h2>Wavelength</h2>
+<p>The distance completed by one complete cycle of the sound wave is
+called its <strong>wavelength (λ)</strong>. Wavelength is given in
+<em>m</em> or <em>cm</em>. The higher the F, the shorter the period
+(remember F=1/t) and wavelength. Conversely, the lower the F, the longer
+the period and wavelength.</p>
+<p align="center">
+<img src="images/wavelength.png">
+</p>
+</div>
+<div id="velocity" class="section level2">
+<h2>Velocity</h2>
+<p>Just how fast a sound wave moves (or its <strong>velocity</strong>)
+depends upon the nature of the medium, the substance in which the wave
+is moving (e.g., air, water, concrete). Denser media allow sounds to
+travel faster, so sound travels faster in water (than air), and even
+faster in steel or concrete.</p>
+<p>Temperature also affects the velocity of sound, though not so much in
+liquids and solids. As temperature increases so too does the velocity of
+the sound wave. So, in warmer air, the velocity of sound increases at a
+rate of 0.6m/s /deg C.</p>
+<p>The “speed of sound” (v) is roughly 330 m/s. (Be <strong>very
+careful</strong> with the units of v as some questions will require you
+to convert!) There is a <strong>very important</strong> relationship
+between frequency and wavelength, which relies on v: <span
+class="math display">\[F = v/λ\]</span></p>
+</div>
+<div id="amplitude" class="section level2">
+<h2>Amplitude</h2>
+<p>In our description of period, frequency, and wavelength we have (till
+now) ignored a very important component of our sound wave, namely the
+displacement of the wave from equilibrium. Remember we referred to
+“maximum displacement” above?</p>
+<p>This maximum <em>height</em> of the wave, above and below the
+equilibrium point, is called <strong>amplitude</strong>. For practical
+purposes (which we’ll spend some time discussing later in the course),
+the amplitude corresponds to the loudness of a sound. Amplitude is
+measured in bels or decibels (bel/10).</p>
+</div>
+</div>
+<div id="pure-and-complex-sounds" class="section level1">
+<h1>Pure and complex sounds</h1>
+<p>A sound can be composed of one or more frequencies <span
+class="math inline">\(\rightarrow\)</span> remember that these
+frequencies represent the movement of the sound wave (itself made up of
+the movement of air molecules)</p>
+<div id="pure-tones" class="section level2">
+<h2>Pure tones</h2>
+<p>If a sound consists of a single frequency it is called a <strong>pure
+tone</strong>. A pure tone can be described by <strong>simple harmonic
+motion</strong>, which is depicted as a sine wave, with a frequency,
+period, wavelength, etc. Here is an example of a <a
+href="sounds/440Hz.wav">pure tone</a>, one where one complete cycle of
+the wave repeats itself 440 times per second (or with a frequency of 440
+Hz). Below is an image of the waveform depicting the 440 (I did this in
+Praat…can you?):</p>
+<p align="center">
+<img src="images/440sine.png" width="70%" height="70%">
+</p>
+<p>Musicians among you may know this tone as the note “A” in a Western
+traditional 12-tone scale system. If you have a piano or keyboard
+nearby, play this tone, then the “A” key. Are they the same note? How
+does your piano (or any other in-tune instrument) sound different from
+the tone?</p>
+<p align="center">
+<img src="images/a440.jpeg" width="75%" height="75%">
+</p>
+<p>Listen to the two sounds one after the other:</p>
+<audio controls>
+<source src="sounds/a-piano.mp3" type="audio/wav"/>
+</audio>
+<audio controls>
+<source src="sounds/440Hz.wav" type="audio/wav"/>
+</audio>
+<p><br />
+</p>
+</div>
+<div id="complex-sounds" class="section level2">
+<h2>Complex sounds</h2>
+<p>A note struck on the piano <em>does</em> sound different from the
+pure tone above. The reason it sounds different is because the vibrating
+metal string in the piano, when struck, produces the 440Hz tone <em>as
+well</em> as other tones (called “overtones”) resulting in a
+<strong>complex sound</strong>. The complexity of the sound contributes
+to the overall <em>voice</em> of the instrument (or “timbre”). Complex
+sounds can be either <strong>periodic</strong> or
+<strong>aperiodic</strong>.</p>
+<div id="periodic-sounds" class="section level3">
+<h3>Periodic sounds</h3>
+<p>A complex periodic sound would be like notes playes from an
+instrument or even vowel sounds coming out of your mouth!</p>
+<figure align="center">
+<img src="images/complex_periodic_vowel.png" width="70%" height="70%">
+<figcaption>
+Periodic complex sound–Vowel.
+</figcaption>
+</figure>
+<br />
+Here is a <a href="sounds/middle_C.mp3">“middle C”</a> from a piano
+(also a complex periodic wave). Can you identify one complete cycle (or
+period)?<br />
+
+<figure align="center">
+<img src="images/middle-c.png" width="70%" height="70%">
+<figcaption>
+Periodic complex sound–Piano, Middle C
+</figcaption>
+</figure>
+<p><br />
+</p>
+<p>Here’s a little practice question testing your understanding of
+frequency in periodic sounds.</p>
+<div id="practice-" class="section level4">
+<h4>Practice—-</h4>
+What is the frequency of the Middle C piano note above? You can
+calculate it from the waveform given. <!-- Answer options go here -->
+<div class="radio">
+<p><label>
+<input type="radio" name="question01" id="opt1" value="440Hz" onchange="check_answer()">
+440Hz </label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question01" id="opt2" value="260kHz" onclick="check_answer()">
+260kHz </label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question01" id="opt3" value="262.23kHz" onclick="check_answer()">
+262Hz </label></p>
+</div>
+<div class="radio">
+<p><label>
+<input type="radio" name="question01" id="opt3" value="262.24Hz" onclick="check_answer()">
+262.24Hz </label></p>
+</div>
+<!-- Check answer button -->
+<div>
+<button class="btn btn-primary" type="button" onclick="check_answer()" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+Show / Hide result
+</button>
+</div>
+<div id="collapseExample" class="collapse">
+<div id="answerFeedback" class="card card-body">
+<pre><code>The answer selected was ...</code></pre>
+</div>
+</div>
+<!-- Code to update answer feedback -->
+<script type="text/javascript">
+function check_answer()
+{
+    var radioButtons = document.getElementsByName("question01");
+    document.getElementById("answerFeedback").innerHTML = "Try selecting an answer!!";
+    for(var i = 0; i < radioButtons.length; i++)
+    {
+        if(radioButtons[i].checked == true)
+        {
+            var selectedAnswer = "Your selected answer was " + radioButtons[i].value;
+            <!-- feedback for correct / incorrect response -->
+            var feedback = "Not quite! Have another go." 
+            if(radioButtons[i].value == "262.24Hz") {
+              feedback = "Yup, good job! 3 cycles / 0.01144 seconds = 262.24Hz"
+            }
+            document.getElementById("answerFeedback").innerHTML = selectedAnswer + "<br>" + feedback;
+            return true;
+        }
+    }
+}
+</script>
+<hr />
+</div>
+</div>
+<div id="aperiodic-sounds" class="section level3">
+<h3>Aperiodic sounds</h3>
+<p>Aperiodic sounds are not periodic (or quasi-periodic); the waveform
+does not show any repeating quality (or periodicity). There are two
+types of aperiodic sounds:</p>
+<ul>
+<li>Aperiodic sounds are sounds that do not repeat</li>
+<li>Aperiodic sounds are of two types: a <strong>transient</strong>
+sound or a sound that occurs just once, for a very short time (e.g., a
+hand clap, a balloon pop, or even one cycle of a sine wave!); a
+<strong>noise</strong> sound where the pressure at each moment is random
+and does not depend on the previous moment (e.g., a tire leaking air or
+<a href="sounds/noise.wav">static</a> on the radio)</li>
+</ul>
+<figure align="center">
+<img src="images/noise.png" width="70%" height="70%">
+<figcaption>
+Aperiodic noise–radio static from above
+</figcaption>
+</figure>
+<p><br />
+</p>
+</div>
+</div>
+<div id="complex-periodic-sounds" class="section level2">
+<h2>Complex periodic sounds</h2>
+<p>Periodic complex sounds are made up of frequencies of sound that are
+<em>systematically</em> related to each other:</p>
+<ul>
+<li><p>The lowest frequency is called the <strong>Fundamental
+Frequency</strong>. The fundamental frequency is abbreviated
+<strong><em>F<sub>0</sub></em></strong>. The fundamental frequency is
+based on the periodicity of the entire complex sound. The fundamental
+frequency is not just the frequency of the <strong>lowest component of
+the complex sound</strong>.</p></li>
+<li><p>Frequencies above <strong><em>F<sub>0</sub></em></strong> are
+called <strong>harmonics</strong>. For a complex periodic sounds,
+harmonics are the whole number integer (or a number that can be written
+down without a fraction part, e.g., 35, 5, 28374) multiples of the
+fundamental frequency.</p></li>
+</ul>
+<p>For most <strong>naturally</strong> generated complex periodic sounds
+(like guitar strings, tuning forks, etc.), the source generating the
+sound vibrates at the fundamental frequency AND at each integer multiple
+of the F<sub>0</sub>. So, for example, if the F<sub>0</sub> of a tuning
+fork is 350Hz (ie., the tines of the fork vibrate back and forth 350
+times every sec), it also vibrates at 2 x 350Hz, 3 x 350Hz, 4 x 350Hz, 5
+x 350Hz, etc. <span class="math inline">\(\rightarrow\)</span>
+harmonics. The amplitude (we’ll get to this later) of each harmonic
+decreases. So the loudest harmonic is the first one, the
+F<sub>0</sub>.</p>
+<figure align="center">
+<img src="images/harmonics_sine.png" width="70%" height="70%">
+<figcaption>
+Fundamental (50Hz) and harmonics
+</figcaption>
+</figure>
+<p><br />
+</p>
+<div id="fourier-analysis" class="section level3">
+<h3>Fourier analysis</h3>
+<p>The complex periodic sound is the sum of many simple periodic tones.
+So in the picture above, the resulting sound of the tone complex is
+literally computed by adding each sine wave together. The discovery that
+a complex periodic sound is the sum of multiple simple tones is called
+<em>Fourier Analysis</em>, named after the person who discovered it, <a
+href="https://en.wikipedia.org/wiki/Joseph_Fourier">Joseph
+Fourier</a>.</p>
+<figure align="center">
+<img src="images/harmonic_waveforms.png" width="70%" height="70%">
+<figcaption>
+The addition of harmonics results in the complex waveform.
+</figcaption>
+</figure>
+<p><br />
+</p>
+</div>
+</div>
+<div id="spectrum" class="section level2">
+<h2>Spectrum</h2>
+<p>Waveforms can be displayed in many ways. We’ve seen how this looks
+above <span class="math inline">\(\rightarrow\)</span> conveys
+information about frequency, period, and amplitude but NO information
+about the components (harmonics in periodic sounds).</p>
+<p>A <strong>spectrum</strong> (or more technically the <strong>line
+spectrum</strong> in this case) view, however, provides information
+about the amplitude of the the individual frequencies making up the
+complex periodic sound.</p>
+<figure align="center">
+<img src="images/Spectrum1.gif" width="50%" height="50%">
+<figcaption>
+Basic line spectrum of 100Hz complex periodic sound. Notice the
+harmonics at whole integer multiples of the fundamental frequency.
+</figcaption>
+</figure>
+<p><br />
+</p>
+<ul>
+<li>Line spectra represent a “slice” of the sound in the frequency
+domain. The x-axis represents frequency and the y-axis represents how
+much energy is in that frequency, or <strong>amplitude</strong>. Wait,
+but sound happens over time! What happened to the time dimension, like
+in a waveform? <span class="math inline">\(\rightarrow\)</span> the
+frequencies themselves must have time built in, so the line spectrum
+must occur over some interval of time.</li>
+</ul>
+<p>In the line spectrum above, the F<sub>0</sub> is 100Hz (represented
+by the first vertical line). The line is at 100 on the x-axis, and the
+height of the line represents the amplitude of that component. In this
+case, the F<sub>0</sub> is the loudest component. The next component is
+at 2 x 100Hz or 200Hz, with a component at 300, 400, 500Hz, etc. Notice
+that each harmonic is lower in amplitude relative to the next lower
+harmonic <span class="math inline">\(\rightarrow\)</span> this is a
+feature of naturally vibrating sources.</p>
+<ul>
+<li><p>In a spectrum representation of of sound, there must be some time
+“chunk” over which the spectrum is computed. We’ll learn how to do this
+in Praat.</p></li>
+<li><p>Line spectra are NOT used for complex <em>aperiodic</em> sounds,
+which are characterized by energy across broad bands of
+frequencies.</p></li>
+<li><p>Aperiodic spectra would have closely spaced lines with no
+systematic relationship with each other. The sound is best represented
+by something called a <em>spectral envelope</em> which shows the general
+shape of the amplitudes of the collective frequencies in the
+sound.</p></li>
+</ul>
+<figure align="center">
+<img src="images/aperiodic_spectrum.png" width="50%" height="50%">
+<figcaption>
+Spectrum of aperiodic random noise
+</figcaption>
+</figure>
+<p><br />
+</p>
+</div>
+</div>
+<div id="the-myoelasticaerodynamic-theory-of-phonation"
+class="section level1">
+<h1>The myoelastic/aerodynamic theory of phonation</h1>
+<p>In our last lecture we noted the complexities involved in the
+movement of vocal folds given the highly variable nature of their
+composition as well as their elongation and position governed by
+muscular control of the arytenoids and associated muscles. The most
+widely accepted theory explaining the nature of vocal fold vibration or
+oscillation is called the <strong>myoelastic</strong> theory, which
+explains oscillation as the interaction between muscle forces
+(<em>myo-</em>), tissue elasticity, and air pressure flow.</p>
+<p>The myoelastic/aerodynamic theory of phonation was first described by
+the Dutch speech scientist <a
+href="https://en.wikipedia.org/wiki/Janwillem_van_den_Berg">van den
+Berg</a> in 1958. It basically states that vocal folds open up due to
+sub-glottal pressure and close due to elastic and aerodynamic pressures.
+But that’s too simplistic. Here are the specific steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Musicular activity causes the arytenoids so that the vocal
+processes come together thereby positioning the vocal folds close
+together (adduction)</p></li>
+<li><p>Sub-glottal pressure (air pressure below the vocal folds)
+increases until the vocal folds are forced apart.</p></li>
+<li><p>With narrow opening of the vocal folds (being pushed apart by the
+sub-glottal air pressure) escaping air travels fast (this is called the
+<em>Venturi tube effect</em>). The fast moving air through the narrow
+passage causes a momentary decrease in air pressure across the opening
+(this is called the <strong>Bernoulli effect</strong>)</p></li>
+</ol>
+<p align="center">
+<img src="images/bernoulli.jpg" width="40%" height="40%">
+</p>
+<p><br />
+</p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>The decrease in pressure across the folds causes the folds to be
+sucked together (this is part of the Bernoulli effect you might be
+familiar with, it’s the reason why when you’re in the shower the curtain
+might be sucked in toward you or <em>lift</em> of airplane
+wings)</p></li>
+<li><p>The Bernoulli effect AND the myoelastic recoil forces of the
+vocal folds themselves cause adduction</p></li>
+<li><p>When fully adducted the process begins all over again with an
+increases in sub-glottal pressure. The process repeats resulting in
+phonation!</p></li>
+</ol>
+<p>In the image below, notice that inferior (“lower lip” in the picture)
+and superior (“upper lip”) aspects of the vocal folds adduct at
+different times. Initially the inferior aspect abducts and ultimately
+the superior aspect. Similarly, during abduction, the inferior aspect
+closes before the superior aspect.</p>
+<p align="center">
+<img src="images/myo.jpeg" width="40%" height="40%">
+</p>
+<p><br />
+</p>
+<div id="phonation-threshold" class="section level2">
+<h2>Phonation Threshold</h2>
+<p>Just how much sub-glottal pressure is required to pop open the
+adducted vocal folds? The minimum pressure required is called the
+<strong>phonation threshold pressure</strong> (PTP). The PTP varies
+proportionally with F<sub>0</sub>. With increasing F<sub>0</sub> so is
+PTP. For example, for low F<sub>0</sub>s PTP can be around 3cm
+H<sub>2</sub>0 and up to around 6cm H<sub>2</sub>0 at higher
+F<sub>0</sub>s.</p>
+</div>
+</div>
+<div id="spectrum-1" class="section level1">
+<h1>Spectrum</h1>
+<p>Phonation is the oscillation of the vocal folds back and forth, in a
+roughly periodic fashion. Like all of our discussion of complex periodic
+waves (like the complex wave resulting from plucking a string or blowing
+into a flute), there is a fundamental oscillation, and an infinite
+number of harmonics at frequencies systematically related to the
+fundamental. The resulting <strong>spectrum</strong>, in idealized form,
+would look like the line spectra seen in earlier lectures.</p>
+<p>The spectrum of harmonics produced by the oscillating vocal folds is
+called the <strong>glottal spectrum</strong>, which is unique for how
+the amplitude characteristics diminish with increasing frequency. This
+diminishing of amplitude is called the <strong>spectral
+slope</strong>.</p>
+<p align="center">
+<img src="images/sourcespec.png" width="30%" height="30%">
+</p>
+<p><br />
+</p>
+<p>The glottal spectrum has to be inferred from the sound coming out of
+a mouth, that is, we never get to hear exactly the sound of the vocal
+folds oscillating. When we synthesize the source spectrum, it often
+sounds like <a href="sounds/sourcespec.wav">blowing rasberries</a>, that
+is, it lacks the “shape” of a vowel sound, which is the filtered glottal
+spectrum through the oral and nasal cavities. The harmonic content of
+the glottal spectrum theoretically decreases by <strong>12dB per
+octave</strong>. What’s an <em>octave</em>? The name reveals that it has
+to do with ‘8’, or the eight musical notes that occupy the interval
+between a particular frequency and twice that frequency. So an octave
+higher than 220Hz will be 440Hz, and likewise, an octave below would be
+110Hz. So, for the glottal spectrum, the harmonic that is twice the
+fundamental will have an amplitude 12dB less than the fundamental.</p>
+<p>If the first harmonic (F0) is 200Hz with an amplitude of 36dB, the
+harmonic at 400Hz (H2) will have an amplitude of 24dB. The harmonic with
+800Hz (H4) will have an amplitude of 12dB, the harmonic at 1600Hz (H8)
+will have an amplitude of 0dB.</p>
+<div id="harmonic-spacing" class="section level2">
+<h2>Harmonic spacing</h2>
+<p>When the vocal folds elongate, via tilting the thyroid cartilage, so
+too does the <strong>harmonic spacing</strong> of the spectrum. Remember
+that the harmonics of a complex periodic wave are whole number multiples
+of the fundamental. So a 100Hz fundamental will have tighter spaced
+harmonics (100Hz), than a 200Hz fundamental. The spacing of the
+harmonics contribute to the timbre of the sound. This explains why kids
+sound different from adults, and not just higher pitched.</p>
+</div>
+<div id="vocal-tract-resonance" class="section level2">
+<h2>Vocal tract resonance</h2>
+<p>The human vocal tract is really well suited for producing a wide
+variety of sounds. The length of the vocal tract as well as the coupling
+of various tube-like structures (like the oral cavity, the pharynx, the
+nasal cavity) all contribute to <a href="lecture5.html">filter</a>
+shapes that amplify many different frequency bands when in different
+configurations.</p>
+<p>At some point in the course of evolution, the larynx began to sit
+lower in the neck relative to our nearest human-like primate ancestors
+(<a
+href="https://humanorigins.si.edu/evidence/human-fossils/species/homo-neanderthalensis">Homo
+Neanderthalensis</a>). Neanderthals had a larynx higher in the neck,
+resulting in a shorter vocal tract.</p>
+<p align="center">
+<img src="images/neanderthal.jpg" width="60%%" height="60%">
+</p>
+<p><br />
+</p>
+<p>The vocal tract is a <strong>resonator</strong>, just like we saw in
+the tube and Helmholtz discussion. The resonator is a filter that “let’s
+through” some frequencies from the glottal spectrum, and attenuates (or
+“turns down”) other frequencies. There are four important
+characteristics of the resonator:</p>
+<ol style="list-style-type: decimal">
+<li><p>The tube is closed at one end (open-closed) <span
+class="math inline">\(\rightarrow\)</span> quarter-wave resonator with
+lowest resonance with a wavelength of 4x the length of the tube. Higher
+resonances are odd multiples of the lowest resonance. Remember: <span
+class="math display">\[
+F_1 = \frac{v}{4L};
+F_2 = 3(\frac{v}{4L});
+F_3 = 5(\frac{v}{4L});
+F_4 = 7(\frac{v}{4L})...
+\]</span></p></li>
+<li><p>The vocal tract can be considered a series of containers (a
+sequence of attached tubes). Each tube has its own resonant frequency
+(RF), with each cavity acting as a bandpass filter (amplifying certain
+frequencies and attenuating others)</p></li>
+<li><p>The vocal tract is a <em>broadly tuned</em> resonator, letting
+though a wide bandwidth of frequencies</p></li>
+<li><p>The vocal tract is a <em>variable resonator</em> that is, the
+tubes are not of uniform dimension. The cross-sectional areas and length
+of the tubes are constantly changing. Take a look at the video below and
+see how quickly the shape of the oral and pharygeal (the area above the
+larynx) changes. Consequently the frequency response of the connected
+tubes are constantly changing.</p></li>
+</ol>
+<p align="center">
+<video width="420" height="340" controls>
+<source src="images/mri_chris.mp4" type="video/mp4">
+</video>
+</p>
+</div>
+</div>
+<div id="formants" class="section level1">
+<h1>Formants</h1>
+<p><strong>Formants</strong> are what we call the lowest resonant
+frequencies of the vocal tract resonator. So if we think about the vocal
+tract like a filter, it will have resonances at various frequencies
+(given in the equations if we model the vocal tract like an open-closed
+tube). These resonances are also called <em>prominences</em> or areas in
+the frequency spectrum where the glottal sound is amplified.</p>
+<p>When we talk specifically about formants, we’re dealing with speech.
+That is, we don’t talk about the harmonic resonances of tubes as
+<em>formants</em>, which is reserved for vocal tract resonances. The
+lowest frequency is the <strong>first formant</strong> abbreviated as
+<strong>F1</strong>. Higher formants are odd multiples of F1 for a
+basic, uniform length open-closed tube. This is comparable to a basic
+vowel sound called <strong>schwa</strong> which is written as
+<strong>ə</strong>.</p>
+<div id="schwa-and-vocal-tract-length" class="section level2">
+<h2>Schwa and vocal tract length</h2>
+<p>The average male ə has an F1=500Hz, F2=1500Hz, F3=2500Hz, and
+F4=3500Hz. Can we calculate the length of the average male vocal tract
+based on these formants? Well, we know that: <span
+class="math display">\[F_1 = \frac{v}{4L}\]</span> If we take <span
+class="math inline">\(v\)</span> = 340m/s, we need to convert it to cm,
+because vocal tracts are much smaller than a meter, so <span
+class="math inline">\(v\)</span> = 34000cm/s. So we have: <span
+class="math display">\[
+500Hz = \frac{34000cm/s}{4L}
+\]</span> <span class="math display">\[
+4L = \frac{34000}{500}; L = \frac{68}{4} = 17cm
+\]</span></p>
+<div id="measuring-your-vocal-tract" class="section level3">
+<h3>Measuring your vocal tract</h3>
+<ol style="list-style-type: decimal">
+<li><p>Use Praat to figure out the length of your vocal tract!</p></li>
+<li><p>Record your voice saying the sound “<a
+href="sounds/uhh.wav">uuuuuuhhhhhh</a>” for at least 2 seconds. The main
+vowel in this utterance is schwa.</p></li>
+<li><p>New &gt; Record mono sound &gt; *record the word the “save to
+list”</p></li>
+<li><p>View and Edit your sound</p></li>
+<li><p>Highlight the vowel (the loudest portion of the waveform) then
+Formant &gt; “Show formants”. Your waveform should look like it does
+below, with dots highlighting the formants in the vowel. Remember, these
+are the loudest part of the spectrum.</p></li>
+</ol>
+<p align="center">
+<img src="images/schwa_wave.png" width="60%%" height="60%">
+</p>
+<p><br />
+</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Next go to Formant &gt; Get first formant. Write the number down.
+From this number you can calculate your vocal tract length! My F1 is
+419Hz, so my vocal tract is 20.2cm or thereabouts. Can you calculate
+yours?</li>
+</ol>
+</div>
+</div>
+<div id="source-filter-model" class="section level2">
+<h2>Source-filter model</h2>
+<p>The formal model of vowel production is called the
+<strong>source-filter model</strong> and was developed by <a
+href="https://en.wikipedia.org/wiki/Gunnar_Fant">Gunnar Fant</a>. At its
+core, the source-filter model is quite simple. Now that you know that
+the vocal folds produce a spectrum of frequencies when oscillating (or
+the <strong>source</strong>), the vocal tract acts as a
+<strong>filter</strong> for that source, so what we hear when someone
+speaks is the output of this process.</p>
+<p>There are three components to the source-filter model:</p>
+<ol style="list-style-type: decimal">
+<li><p>The glottal source spectrum</p></li>
+<li><p>The <strong>transfer function</strong> of the vocal tract: the
+acoustic prominences in the frequency spectrum, often visualized as a
+spectral <em>envelope</em> or shape of the filter</p></li>
+<li><p>The output spectrum which we actaully hear</p></li>
+</ol>
+<p>In the schematic picture below, the source spectrum has a
+F<sub>0</sub> of 100Hz and likely has the typical 12dB/octave roll-off.
+That spectrum is fed into the vocal tract transfer function (notice the
+shape of the envelope). The output function has a shape similar to the
+transfer function, with certain frequencies amplified and others
+dampened, so the vocal tract makes an imprint on the output sound.</p>
+<p align="center">
+<img src="images/source_filter.jpg" width="60%%" height="60%">
+</p>
+<p><br />
+</p>
+<p>Again, the model above is an idealized model of a relatively
+open-closed tube giving rise to schwa. Of course languages use many many
+more vowels sounds than the idealized schwa. The envelope of the
+transfer function for all other vowels reflect the relationship between
+the oral (the mouth) and pharyngeal (space above the larynx) cavities.
+The changing shape of the two connected cavities is affected by the
+tongue and the lips. You can make the oral cavity larger by articulating
+a vowel further back in the mouth (like /u/ “ooo”) and moving it more
+forward to make the cavity smaller (like in /i/ “eee”).</p>
+<p>The volumes of the two cavities affect their resonances, with smaller
+volumes generally having resonances at higher frequencies and larger
+volumes at lower frequencies.</p>
+<blockquote>
+<p>The first formant (F1) is related to the size of the pharyngeal
+cavity (and the tightness of the constriction). F2 is related to the
+length of the oral cavity</p>
+</blockquote>
+<p>F1 and F2 are used to acoustically classify vowel sounds. Let’s take
+a look at oral and pharyngeal tract shapes and how they affect F1 and F2
+in common vowels.</p>
+</div>
+<div id="i-and-a" class="section level2">
+<h2>/i/ and /a/</h2>
+<p>The /i/ vowel is in words like “keep” or “eel”. It’s produced with
+the tonge blade (a technical term we’ll come back to) forward in the
+mouth towards the palate, which results in a large cavity behind the
+construction, essentially makig pharyngeal cavity large. As a result, F1
+is lowered. The cavity in front of the tongue is small and short,
+resulting a high F2.</p>
+<p>The /a/ vowel is the one in word like “father” (though there’s lots
+of variation, this is roughly in the right neighborhood). The tongue
+configuration here is smoewhat the opposite of the configuration for
+/i/, with a small pharyngeal cavity (high F1) and a large oral cavity
+(low F2).</p>
+<p>We can also extend (and shorten) the length of the oral cavity by
+manipulating the lips. By rounding your lips, you’re essentially
+extending the length of the oral cavity because they end up being
+protrouded. Likewise when you spread your lips, you shorten the oral
+cavity relative to a neutral position. In the picture below, you’ll see
+models of /i/ and /u/ (where the lips are rounded). Notice that the
+tongue is in roughly the same position, with similar pharyngeal volumes.
+The oral cavity for /u/ is longer and as a result F2 is lower than in
+/i/.</p>
+<p align="center">
+<img src="images/transfer_fucntion_iu.png" width="60%%" height="60%">
+</p>
+<p><br />
+</p>
+</div>
+<div id="vowel-formants" class="section level2">
+<h2>Vowel formants</h2>
+<p>As mentioned above, vowels are generally characterized by F1, F2, and
+sometimes F3. How can we change F1 and F2? We can change length of the
+vocal tract and we can also change how tightly we articulate or the
+degree of the constriction. When the tongue is moved to a particular
+position we have control over how close to palate the tongue is. If it
+is making contact with the palate then the air is stopped behind the
+constriction (which is what we do with consonants or stops). For vowels,
+the tongue must approach the palate but not make contact. The closer the
+constriction in the vocal tract (or the tighter the articulation), the
+lower the F1. If there is a constriction with the back of the tongue, F2
+is lowered. If the front of the tongue is constricted, F2 will raise,
+and F1 will lower (as the constriction is in the vocal tract).</p>
+<p align="center">
+<img src="images/tongue_movement.gif" width="60%%" height="60%">
+</p>
+<p><br />
+</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
