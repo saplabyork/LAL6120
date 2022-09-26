@@ -25,9 +25,8 @@ This paper (is now old) but was pretty influential at the time because it aimed 
   <img src="images/PetersonBarney52.png">
 </p>
 
-```{r cars}
-summary(cars)
-```
+Hillbrand attempts to revisit P&B. Note that Hillenbrand is in central Michigan, which is very close to where P&B worked at the University of Michigan (also my alma mater!). 
+
 
 ## Including Plots
 
