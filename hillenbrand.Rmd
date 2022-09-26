@@ -20,6 +20,13 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(dev = "png",
+                      dpi = 600,
+                      echo = FALSE,
+                      cache = FALSE)
+options(repos = list(CRAN="http://cran.rstudio.com/"))
+install.packages('tidyverse') 
+library(tidyverse)
 ```
 
 # Hillenbrand, Getty, Clark, and Wheeler (1995)
@@ -51,12 +58,15 @@ Cut up these files and make vowel midpoint measurements (F1 and F2) for the targ
   <img src="images/hawed.png" width=50% height=50%>
 </p>
 
-## Including Plots
+Here are my measurements of F1, F2 at the vowel midpoints $\rightarrow$ [data](hvd_data.csv)
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r echo=FALSE}
+hvd <- read_csv('hvd_data.csv')
+hvd
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Now we can plot a rudimentary **scatterplot** of these data:
+
+```{r echo=TRUE}
+ggplot(hvd, aes(x=F2, y=F1)) + geom_point()
+```

@@ -414,14 +414,35 @@ document and then save it as a .csv file to be read into R.</p>
 <p align="center">
 <img src="images/hawed.png" width=50% height=50%>
 </p>
-</div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="hillenbrand_files/figure-html/pressure-1.png" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the
-code chunk to prevent printing of the R code that generated the
-plot.</p>
+<p>Here are my measurements of F1, F2 at the vowel midpoints <span
+class="math inline">\(\rightarrow\)</span> <a
+href="hvd_data.csv">data</a></p>
+<pre><code>## Rows: 21 Columns: 4
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): vowel
+## dbl (3): token, F1, F2
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 21 × 4
+##    token vowel    F1    F2
+##    &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1     1 aw      665  1028
+##  2     1 i       271  2348
+##  3     1 u       304  1313
+##  4     1 o       433  1055
+##  5     1 ae      780  1595
+##  6     1 E       619  1796
+##  7     1 U       630  1318
+##  8     2 aw      666  1029
+##  9     2 i       281  2378
+## 10     2 u       319  1336
+## # … with 11 more rows</code></pre>
+<p>Now we can plot a rudimentary <strong>scatterplot</strong> of these
+data:</p>
+<pre class="r"><code>ggplot(hvd, aes(x=F2, y=F1)) + geom_point()</code></pre>
+<p><img src="hillenbrand_files/figure-html/unnamed-chunk-2-1.png" width="4200" /></p>
 </div>
 </div>
 
