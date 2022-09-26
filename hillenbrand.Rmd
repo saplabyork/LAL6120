@@ -17,7 +17,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Hillenbrand, Getty, Clark, and Wheeler (1995)
+# Hillenbrand, Getty, Clark, and Wheeler (1995)
 
 This paper (is now old) but was pretty influential at the time because it aimed to replicate a (much) earlier paper by [Peterson](images/gordon-peterson.jpeg) and Barney (1952) that exemplified one of the *problems of speech perception*, namely that phonological object (in this case a vowel) can have multiple acoustic realizations both within and between speakers (of varying age and gender). P&B recorded and analyzed canonical American English vowels produced in h-V-d contexts as produced by men, women, and children. The resulting image has been used in countless descriptions of the complexity of vowel spaces:
 
@@ -25,7 +25,14 @@ This paper (is now old) but was pretty influential at the time because it aimed 
   <img src="images/PetersonBarney52.png">
 </p>
 
-Hillbrand attempts to revisit P&B. Note that Hillenbrand is in central Michigan, which is very close to where P&B worked at the University of Michigan (also my alma mater!). 
+Hillbrand attempts to revisit P&B. Note that Hillenbrand is in central Michigan, which is quite different from the data P&B collected near the Bell Laboratories in New Jersey.
+
+## P&B's measurements
+- F1-F3 (Hz)
+- F1-F3 (amplitude)
+- F0
+
+All measurements made from the "steady state" portion of the vowel. Why? $\rightarrow$ The middle section of a vowel is thought to be least affected by neighbouring segments (i.e., least coarticulation).
 
 
 ## Including Plots
