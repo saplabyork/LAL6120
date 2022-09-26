@@ -441,7 +441,7 @@ href="hvd_data.csv">data</a></p>
 ## # … with 11 more rows</code></pre>
 <p>Now we can plot a rudimentary <strong>scatterplot</strong> of these
 data:</p>
-<pre class="r"><code>ggplot(hvd, aes(x=F2, y=F1)) + geom_point()</code></pre>
+<pre class="r"><code>ggplot(hvd, aes(x=F2, y=F1, label = vowel)) + geom_text() + scale_x_reverse() + scale_y_reverse()</code></pre>
 <p><img src="hillenbrand_files/figure-html/unnamed-chunk-2-1.png" width="4200" /></p>
 </div>
 </div>

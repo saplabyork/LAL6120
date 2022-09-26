@@ -68,5 +68,5 @@ hvd
 Now we can plot a rudimentary **scatterplot** of these data:
 
 ```{r echo=TRUE}
-ggplot(hvd, aes(x=F2, y=F1)) + geom_point()
+ggplot(hvd, aes(x=F2, y=F1, label = vowel)) + geom_text() + scale_x_reverse() + scale_y_reverse()
 ```
