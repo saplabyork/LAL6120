@@ -8,8 +8,8 @@ navbar:
       href: acoustics_basics.html
     - text: "VOT Notes"
       href: week2VOTnotes.html
-    # - text: "Lecture 3"
-    #   href: lecture3.html
+    - text: "Hillenbrand et al. (1995)"
+      href: hillenbrand.html
     # - text: "Lecture 4"
     #   href: lecture4.html
     # - text: "Lecture 5"

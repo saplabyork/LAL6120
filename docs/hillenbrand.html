@@ -9,14 +9,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="" />
 
 
-<title>R notes</title>
+<title>Hillenbrand et al. (1995)</title>
 
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,14 +30,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link rel="shortcut icon" href="images/logo.jpeg">
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -228,73 +224,7 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
-
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
 
 
 
@@ -304,16 +234,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -339,6 +259,9 @@ div.tocify {
 <li>
   <a href="week2VOTnotes.html">VOT Notes</a>
 </li>
+<li>
+  <a href="hillenbrand.html">Hillenbrand et al. (1995)</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -349,120 +272,50 @@ div.tocify {
 
 <div id="header">
 
-<div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-</ul>
-</div>
 
 
-
-<h1 class="title toc-ignore">R notes</h1>
+<h1 class="title toc-ignore">Hillenbrand et al. (1995)</h1>
+<h4 class="author"></h4>
 
 </div>
 
 
-<div id="reading-in-data-using-base-r" class="section level1">
-<h1>Reading in data using “base R”</h1>
-<p>Base R refers to all of the operations and functions that come built
-in to your R session without loading any <em>libraries</em>. Let’s read
-in some data. Suppose you’ve made your measurements of lots of sounds
-and you’ve saved them in Excel (or some other spreadsheet program). It’s
-really good practice to save the data as a “.csv” file or
-<em>comma-separated values</em>. This is a format that is easily
-readable by R. (You can read in .xls files as well but let’s keep it
-software neutral for the moment).</p>
-<p>Your R Studio session should be divided into different windows.
-Locate the “Script” window. If you don’t see it, go to the “plus” icon
-at the top and select “New script”. This should open a window. It is
-here where you will put all of your commands.</p>
-<p>You can input your commands directly at the command prompt “&gt;” but
-it’s good practice to see what you’ve done. If you save it in a script
-then it’s always there and theoretically always reproducible.</p>
-<p>First let’s try out some fun stuff:</p>
-<p>2+2 #If you put a hashtag in front of your script, it “comments” it
-out (i.e., it won’t operate over the comment)</p>
-<p>3*2 #multiply 2^9 #exponents</p>
-<p>(8+9)* 5 #operations</p>
-<p>#The general structure of an R function is: # function(arg1, arg2,
-…)</p>
-<p>#There are many built-in mathematical functions in R</p>
-<p>sqrt(81)</p>
+<div id="hillenbrand-getty-clark-and-wheeler-1995"
+class="section level2">
+<h2>Hillenbrand, Getty, Clark, and Wheeler (1995)</h2>
+<p>This paper (is now old) but was pretty influential at the time
+because it aimed to replicate a (much) earlier paper by <a
+href="images/gordon-peterson.jpeg">Peterson</a> and Barney (1952) that
+exemplified one of the <em>problems of speech perception</em>, namely
+that phonological object (in this case a vowel) can have multiple
+acoustic realizations both within and between speakers (of varying age
+and gender). P&amp;B recorded and analyzed canonical American English
+vowels produced in h-V-d contexts as produced by men, women, and
+children. The resulting image has been used in countless descriptions of
+the complexity of vowel spaces:</p>
+<p align="center">
+<img src="images/PetersonBarney52.png">
+</p>
+<pre class="r"><code>summary(cars)</code></pre>
+<pre><code>##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre>
 </div>
-<div id="you-can-assign-variables-to-the-output-of-a-function"
-class="section level1">
-<h1>You can assign variables to the output of a function</h1>
-<p>x &lt;- (8+9) * sqrt(81) x</p>
-</div>
-<div
-id="the-command-ls-will-list-all-of-the-objects-in-your-environment"
-class="section level1">
-<h1>The command ls() will list all of the objects in your
-environment</h1>
-<p>ls()</p>
-</div>
-<div
-id="lets-read-in-some-data.-but-first-lets-see-what-your-working-directory-is."
-class="section level1">
-<h1>Let’s read in some data. But first let’s see what your working
-directory is.</h1>
-<p>getwd()</p>
-<p>#make sure the data you want to read in is in the working
-directory.</p>
-<p>tam &lt;- read.csv(tam, header=TRUE)</p>
-<p>#this should put the object “tam” in your environment</p>
-<p>head(tam) tail(tam)</p>
-<p>#Introducing Tidyverse package –&gt; a modern way of doing R, meant
-to make everything tidier than Base R.</p>
-<p>install.packages(‘tidyverse’) library(tidyverse)</p>
-<p>tam &lt;- as_tibble(tam)</p>
-<p>First you need some data. I have uploaded a .csv file <a
-href="tam.csv">here</a></p>
-<p>#Try out some fun stuff</p>
-<p>2+2 #If you put a hashtag in front of your script, it “comments” it
-out (i.e., it won’t operate over the comment)</p>
-<p>3*2 #multiply 2^9 #exponents</p>
-<p>(8+9)* 5 #operations</p>
-<p>#The general structure of an R function is: # function(arg1, arg2,
-…)</p>
-<p>#There are many built-in mathematical functions in R</p>
-<p>sqrt(81)</p>
-</div>
-<div id="you-can-assign-variables-to-the-output-of-a-function-1"
-class="section level1">
-<h1>You can assign variables to the output of a function</h1>
-<p>x &lt;- (8+9) * sqrt(81) x</p>
-</div>
-<div
-id="the-command-ls-will-list-all-of-the-objects-in-your-environment-1"
-class="section level1">
-<h1>The command ls() will list all of the objects in your
-environment</h1>
-<p>ls()</p>
-</div>
-<div
-id="lets-read-in-some-data.-but-first-lets-see-what-your-working-directory-is.-1"
-class="section level1">
-<h1>Let’s read in some data. But first let’s see what your working
-directory is.</h1>
-<p>getwd()</p>
-<p>#make sure the data you want to read in is in the working
-directory.</p>
-<p>tam &lt;- read.csv(tam, header=TRUE)</p>
-<p>#this should put the object “tam” in your environment</p>
-<p>head(tam) tail(tam)</p>
-<p>#Introducing Tidyverse package –&gt; a modern way of doing R, meant
-to make everything tidier than Base R.</p>
-<p>install.packages(‘tidyverse’) library(tidyverse)</p>
-<p>tam &lt;- as_tibble(tam)</p>
+<div id="including-plots" class="section level2">
+<h2>Including Plots</h2>
+<p>You can also embed plots, for example:</p>
+<p><img src="hillenbrand_files/figure-html/pressure-1.png" width="672" /></p>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the
+code chunk to prevent printing of the R code that generated the
+plot.</p>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -494,41 +347,7 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("hide" === "show");
-});
-</script>
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

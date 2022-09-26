@@ -1,0 +1,40 @@
+---
+title: "Hillenbrand et al. (1995)"
+output: 
+  html_document:
+    includes:
+      in_header: "favicon.html"
+    theme: paper
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 2
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Hillenbrand, Getty, Clark, and Wheeler (1995)
+
+This paper (is now old) but was pretty influential at the time because it aimed to replicate a (much) earlier paper by [Peterson](images/gordon-peterson.jpeg) and Barney (1952) that exemplified one of the *problems of speech perception*, namely that phonological object (in this case a vowel) can have multiple acoustic realizations both within and between speakers (of varying age and gender). P&B recorded and analyzed canonical American English vowels produced in h-V-d contexts as produced by men, women, and children. The resulting image has been used in countless descriptions of the complexity of vowel spaces:
+
+<p align="center">
+  <img src="images/PetersonBarney52.png">
+</p>
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
