@@ -34,6 +34,12 @@ Hillbrand attempts to revisit P&B. Note that Hillenbrand is in central Michigan,
 
 All measurements made from the "steady state" portion of the vowel. Why? $\rightarrow$ The middle section of a vowel is thought to be least affected by neighbouring segments (i.e., least coarticulation).
 
+Let's do a quick exercise examining vowels and variability. Download the following three .wav files. Each has a list of hVd words in a carrier sentence. The vowels are: "hawed," "heed," "hood" (/u/ vowel), "had," "head," and "hud."
+
+[hVd1](sounds/hvd1.wav)
+[hvd2](sounds/hvd2.wav)
+[hvd3](sounds/hvd3.wav)
+
 
 ## Including Plots
 
