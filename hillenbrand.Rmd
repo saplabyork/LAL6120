@@ -12,6 +12,11 @@ output:
     toc_depth: 2
     code_folding: hide
 ---
+<style type="text/css">
+  body{
+  font-size: 12pt;
+}
+</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -40,6 +45,11 @@ Let's do a quick exercise examining vowels and variability. Download the followi
 [hvd2](sounds/hvd2.wav)
 [hvd3](sounds/hvd3.wav)
 
+Cut up these files and make vowel midpoint measurements (F1 and F2) for the target sounds. Then input your measurements into an Excel document and then save it as a .csv file to be read into R. 
+
+<p align="center">
+  <img src="images/hawed.png" width=50% height=50%>
+</p>
 
 ## Including Plots
 
