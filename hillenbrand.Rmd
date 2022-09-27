@@ -76,3 +76,7 @@ Can we look at the data in any other way? How about boxplots? A boxplot shows me
 ```{r echo=TRUE}
 ggplot(hvd, aes(vowel, F2-F1)) + geom_boxplot()
 ```
+
+# Assignment 1
+
+You can download Assignment 1 [here](docs/LAL6120_Assignment1.pdf). You'll need some way to record your voice onto your computer so that you can analyze in Praat and then make some plots in R. 
