@@ -443,6 +443,12 @@ href="hvd_data.csv">data</a></p>
 data:</p>
 <pre class="r"><code>ggplot(hvd, aes(x=F2, y=F1, label = vowel)) + geom_text() + scale_x_reverse() + scale_y_reverse()</code></pre>
 <p><img src="hillenbrand_files/figure-html/unnamed-chunk-2-1.png" width="4200" /></p>
+<p>Can we look at the data in any other way? How about boxplots? A
+boxplot shows mean values of each group with some variance statistics
+(error bars, quartile ranges, etc.). It might be not very useful for the
+present data but let’s try it nonetheless.</p>
+<pre class="r"><code>ggplot(hvd, aes(vowel, F2-F1)) + geom_boxplot()</code></pre>
+<p><img src="hillenbrand_files/figure-html/unnamed-chunk-3-1.png" width="4200" /></p>
 </div>
 </div>
 
