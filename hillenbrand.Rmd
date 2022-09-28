@@ -71,6 +71,11 @@ Now we can plot a rudimentary **scatterplot** of these data:
 ggplot(hvd, aes(x=F2, y=F1, label = vowel)) + geom_text() + scale_x_reverse() + scale_y_reverse()
 ```
 
+```{r echo=TRUE}
+ggplot(hvd, aes(x=F2, y=F1-F2, label = vowel)) + geom_text() + scale_x_reverse() + scale_y_reverse()
+```
+
+
 Can we look at the data in any other way? How about boxplots? A boxplot shows mean values of each group with some variance statistics (error bars, quartile ranges, etc.). It might be not very useful for the present data but let's try it nonetheless.
 
 ```{r echo=TRUE}
