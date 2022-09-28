@@ -451,6 +451,40 @@ present data but let’s try it nonetheless.</p>
 <p><img src="hillenbrand_files/figure-html/unnamed-chunk-3-1.png" width="4200" /></p>
 </div>
 </div>
+<div id="lpc" class="section level1">
+<h1>LPC</h1>
+<p>Hillenbrand et al. use <strong>LPC</strong> analysis to analyze the
+formants in their data. There are plenty of descriptions of what LPC
+(linear predictive coding) is so we won’t go down that road. It’s safe
+to say that LPC approximates the formant peaks without the source
+characteristics. Remember that our model of vowel acoustics is based on
+<em>source-filter theory</em>, with the source spectrum (fundamental
+frequency and higher order harmonics that are related to the F0)
+provided by the glottal oscillation and the filter being the resonant
+characteristics of the tubes making up the pharynx and oral cavity. LPC,
+through a lot of fancy math digital signal processing, figures out what
+the formants are based on adjacent samples.</p>
+<p>Let’s do an LPC analysis in Praat and compare it to the FFT that
+we’re used to. As a rule of thumb, we expect 1 formant every 1000Hz, so
+based on the sample rate of the file. First resample your file at a
+lower rate (try 10 or 11kHz).</p>
+<ul>
+<li>Sound &gt; Convert &gt; Resample</li>
+<li>Go to the midpoint of the vowel you want to analyze</li>
+<li>Analyze Spectrum &gt; To LPC (autocorrelation)</li>
+<li>Prediction order is important! The sampling rate is 10000Hz (say),
+so we would expect 10 formants. Multiply the number of expected formants
+x 2, then add 2. So (10 x 2) + 2 = 22</li>
+<li>From the LPC object &gt; To Spectrum (slice) &gt; use the time from
+the middle of the vowel</li>
+</ul>
+<p>In the image below you can see the consistency between the LPC peaks
+(black) and the FFT harmonics (red, the loudest peaks are the
+formants):</p>
+<p align="center">
+<img src="images/lpc_fft.png">
+</p>
+</div>
 <div id="assignment-1" class="section level1">
 <h1>Assignment 1</h1>
 <p>You can download Assignment 1 <a

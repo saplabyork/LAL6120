@@ -77,6 +77,25 @@ Can we look at the data in any other way? How about boxplots? A boxplot shows me
 ggplot(hvd, aes(vowel, F2-F1)) + geom_boxplot()
 ```
 
+# LPC
+
+Hillenbrand et al. use **LPC** analysis to analyze the formants in their data. There are plenty of descriptions of what LPC (linear predictive coding) is so we won't go down that road. It's safe to say that LPC approximates the formant peaks without the source characteristics. Remember that our model of vowel acoustics is based on *source-filter theory*, with the source spectrum (fundamental frequency and higher order harmonics that are related to the F0) provided by the glottal oscillation and the filter being the resonant characteristics of the tubes making up the pharynx and oral cavity. LPC, through a lot of fancy math digital signal processing, figures out what the formants are based on adjacent samples. 
+
+Let's do an LPC analysis in Praat and compare it to the FFT that we're used to. As a rule of thumb, we expect 1 formant every 1000Hz, so based on the sample rate of the file. First resample your file at a lower rate (try 10 or 11kHz).
+
+- Sound > Convert > Resample
+- Go to the midpoint of the vowel you want to analyze
+- Analyze Spectrum > To LPC (autocorrelation)
+- Prediction order is important! The sampling rate is 10000Hz (say), so we would expect 10 formants. Multiply the number of expected formants x 2, then add 2. So (10 x 2) + 2 = 22
+- From the LPC object > To Spectrum (slice) > use the time from the middle of the vowel
+
+In the image below you can see the consistency between the LPC peaks (black) and the FFT harmonics (red, the loudest peaks are the formants):
+
+<p align="center">
+  <img src="images/lpc_fft.png">
+</p>
+
+
 # Assignment 1
 
 You can download Assignment 1 [here](docs/LAL6120_Assignment1.pdf). You'll need some way to record your voice onto your computer so that you can analyze in Praat and then make some plots in R. 
