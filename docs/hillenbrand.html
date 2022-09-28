@@ -456,14 +456,15 @@ present data but let’s try it nonetheless.</p>
 <p>Hillenbrand et al. use <strong>LPC</strong> analysis to analyze the
 formants in their data. There are plenty of descriptions of what LPC
 (linear predictive coding) is so we won’t go down that road. It’s safe
-to say that LPC approximates the formant peaks without the source
-characteristics. Remember that our model of vowel acoustics is based on
-<em>source-filter theory</em>, with the source spectrum (fundamental
-frequency and higher order harmonics that are related to the F0)
-provided by the glottal oscillation and the filter being the resonant
-characteristics of the tubes making up the pharynx and oral cavity. LPC,
-through a lot of fancy math digital signal processing, figures out what
-the formants are based on adjacent samples.</p>
+to say that LPC approximates the formant peaks (models the resonances of
+the vocal tract) without the source characteristics. Remember that our
+model of vowel acoustics is based on <em>source-filter theory</em>, with
+the source spectrum (fundamental frequency and higher order harmonics
+that are related to the F0) provided by the glottal oscillation and the
+filter being the resonant characteristics of the tubes making up the
+pharynx and oral cavity. LPC, through a lot of fancy math digital signal
+processing, figures out what the formants are based on adjacent
+samples.</p>
 <p>Let’s do an LPC analysis in Praat and compare it to the FFT that
 we’re used to. As a rule of thumb, we expect 1 formant every 1000Hz, so
 based on the sample rate of the file. First resample your file at a
