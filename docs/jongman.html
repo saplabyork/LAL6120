@@ -470,12 +470,31 @@ distribution</strong> or <strong>Gaussian distribution</strong>.</p>
 <pre><code>## [1] 40.61835</code></pre>
 <pre class="r"><code>sd(tam$HiDiff)</code></pre>
 <pre><code>## [1] 13.42285</code></pre>
+<pre class="r"><code>median(tam$HiDiff)</code></pre>
+<pre><code>## [1] 39.3</code></pre>
 <p>I hope you have an intuitive sense of what <em>mean</em> means. It’s
 always good to think of the mean as the <em>model</em> of the data,
 which can then be used to make predictions. Keep in mind that this is
 the mean of a sample from the population of all HiDiff measurements. We
 don’t have access to all of the HiDiffs that exist in the world, so the
 sample is used to estimate the population parameters.</p>
+<pre class="r"><code>boxplot(tam$HiDiff, ylab=&quot;HiDiff&quot;)</code></pre>
+<p><img src="jongman_files/figure-html/unnamed-chunk-4-1.png" width="4200" /></p>
+<p>We can also look at the data as a <em>boxplot</em>. The Boxplot tells
+you a coule of things: the median, or middle value, here represented as
+a thick black line, as well as the quartile values. The box covers 50%
+of the data–25% is above the median, and 25% is below the median. The
+ends of the box are called the first, second and third quartiles. The
+lower bound of the box is Q1 or the first quartile, which is the 25th
+percentile, so 25% of the data are below it. The next quartile is Q2,
+which is the median, so 50% of the data fall below it. The top bound of
+the box is the Q3, so 75% of the data fall below it. Q3-Q1 is called the
+“interquartile range.”</p>
+<p>How do we interpret the whiskers of the plot? The top whisker
+represents the largest number that falls within a distance of 1.5 times
+the interquartile range from Q3. Similarly, the lower whisker is 1.5
+times the IQR from Q1. The points outside the whiskers are called
+extreme values, often called “outliers.”</p>
 </div>
 
 

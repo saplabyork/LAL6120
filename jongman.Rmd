@@ -75,6 +75,15 @@ We can examine the mean and the standard deviation:
 ```{r echo=TRUE}
 mean(tam$HiDiff)
 sd(tam$HiDiff)
+median(tam$HiDiff)
 ```
 
 I hope you have an intuitive sense of what *mean* means. It's always good to think of the mean as the *model* of the data, which can then be used to make predictions. Keep in mind that this is the mean of a sample from the population of all HiDiff measurements. We don't have access to all of the HiDiffs that exist in the world, so the sample is used to estimate the population parameters. 
+
+```{r echo=TRUE}
+boxplot(tam$HiDiff, ylab="HiDiff")
+```
+
+We can also look at the data as a *boxplot*. The Boxplot tells you a coule of things: the median, or middle value, here represented as a thick black line, as well as the quartile values. The box covers 50% of the data--25% is above the median, and 25% is below the median. The ends of the box are called the first, second and third quartiles. The lower bound of the box is Q1 or the first quartile, which is the 25th percentile, so 25% of the data are below it. The next quartile is Q2, which is the median, so 50% of the data fall below it. The top bound of the box is the Q3, so 75% of the data fall below it. Q3-Q1 is called the "interquartile range." 
+
+How do we interpret the whiskers of the plot? The top whisker represents the largest number that falls within a distance of 1.5 times the interquartile range from Q3. Similarly, the lower whisker is 1.5 times the IQR from Q1. The points outside the whiskers are called extreme values, often called "outliers."
