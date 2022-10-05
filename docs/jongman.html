@@ -11,7 +11,7 @@
 
 
 
-<title>VOT notes</title>
+<title>Jongman et al. (2000)</title>
 
 <script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -33,6 +33,7 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link rel="shortcut icon" href="images/logo.jpeg">
@@ -227,6 +228,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -351,112 +355,127 @@ div.tocify {
 
 <div id="header">
 
-
-
-<h1 class="title toc-ignore">VOT notes</h1>
-
-</div>
-
-
-<div id="vot-basics" class="section level2">
-<h2>VOT basics</h2>
-<ul>
-<li>The primary acoustic characteristic corresponding to phonological
-voicing in oral stops is voice-onset time or <em>VOT</em></li>
-<li>VOT is the time elapsed between the release of the oral closure and
-the onset of the periodic oscillation of the vocal folds</li>
-<li>Languages exploit this timing (a)synchronization to signal [voice]
-distinction</li>
-</ul>
-<p>From Lisker and Abramson (1964): “for voiced stops the formantless
-segment corresponding to the closure interval is traversed by a small
-number of low-frequency harmonic components, while in the case of
-voiceless stops the closure interval is essentially blank”</p>
-<p align="center">
-<img src="images/vot_image.png">
-</p>
-<ul>
-<li><p>The above image shows an utterance of [<span
-class="math inline">\(p^h\)</span> a]. In the waveform representation,
-the area between the two dashed lines on the left is the VOT. There is
-some <em>art</em> required in the measurement of VOT and not all
-researchers will have the same landmarks for the beginning of the
-consonant release and the onset of vocal fold oscillation. As long as
-the research defines her criteria and remains consistent in measurement,
-then it’s not an issue.</p></li>
-<li><p>In the image above, the vocal fold oscillation is taken at the
-“zero-crossing” of the first period of the voicing. What constitutes a
-period?</p></li>
-<li><p>The onset of the VOT is taken as the onset of transient noise
-which is consistent with the stop burst release.</p></li>
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
 </ul>
 </div>
-<div id="lisker-and-abramson-1964" class="section level2">
-<h2>Lisker and Abramson (1964)</h2>
-<p>Lisker and Abramson say that “articulatory force” is another phonetic
-factor separating the voicing categories, though what does it mean? They
-say it is “proprioceptive”→ the speaker has a sense that it is more
-effortful or stronger. This <em>roughly</em> corresponds to the
-fortis/lenis distinction and perhaps the effects of voicing and
-aspiration are redundant sources of information.</p>
-<p>But Fant says that fortis/lenis may not be necessary as all of the
-phonetic features (voicing during closure, aspiration, articulatory
-effort) are essentially related to the activity of the glottis at
-different point in time of stop production.</p>
-<p>Much of the introduction to the paper is wrestling with the utility
-of various phonetic features as indicative of the phonological
-distinctions observed in languages.</p>
-<p>Interesting phenomenon –&gt; <strong>covariation</strong> between
-voicing and aspiration, which means where one is present, the other is
-absent. They note that this is the situation in English. But what about
-other langauges?</p>
-<p><strong>The purpose of the paper is to elucidate how clearly or
-neatly VOT corresponds to voicing in many languages.</strong> They
-acknowledge that it’s perhaps more complicated than initially seems, as
-languages like Hindi and Marathi, with voiced/voiceless aspirate series
-may not be separated solely by VOT.</p>
-<p align="center">
-<img width=50% height=50% src="images/lisker_VOT.png">
-</p>
+
+
+
+<h1 class="title toc-ignore">Jongman et al. (2000)</h1>
+
 </div>
-<div id="categories-of-vot-according-to-la" class="section level2">
-<h2>Categories of VOT according to LA</h2>
-<ul>
-<li>Two-category: AmEn, Cantonese, Dutch, Hungarian, (Carib) Spanish,
-Tamil</li>
-<li>Three-category: Korean, Armenian, Thai</li>
-<li>Four-category: Hindi, Marathi (both Indic languages)</li>
-</ul>
-<p>For the most part, two-category seems relatively uninteresting…except
-when we look at where the VOT is dimension is divided. Let’s look at
-AmEn vs. Dutch (two closely related languages)</p>
+
+
+<style type="text/css">
+  body{
+  font-size: 12pt;
+}
+</style>
+<div id="fricatives" class="section level1">
+<h1>Fricatives</h1>
+<p>Fricatives are produced when high-pressure air in the (generally)
+oral cavity is released through a small aperture. The cross-sectional
+area of the opening and where in the mouth the opening is located both
+contribute to the spectral shape. The shape has a natural <em>center of
+gravity</em>, which reflects the resonance of the volume anterior (in
+front of) the constriction aperture.</p>
+<p>The overall <em>definition</em> of the spectral shape is determined
+by the length of the anterior volume, but more importantly the location
+of the spectral peak:</p>
 <p align="center">
-<img width=50% height=50% src="images/dutchVOT.png"><img width=50% height=50% src="images/englishVOT.png">
+<img src="images/spec_peak_frics.png">
 </p>
-<p>Now let’s examine the labial place across languages:</p>
-<p align="center">
-<img width=50% height=50% src="images/vot_hist_p.png">
-</p>
+<p>If we look at the results here, they have conducted a four-way
+<em>analysis of variance</em>, which compares mean values, that is, the
+individual measurements are averaged and then the analysis is run. The
+ANOVA is an extension of a <em>t-test</em> which checks whether
+<strong>two</strong> means are significantly different. When there are
+more than two groups (like the places of articulation for fricatives in
+Jongman) we use ANOVA. I encourage you to read-up on ANOVA as you’ll see
+it <em>a lot</em> in older phonetics studies. <a
+href="https://www.youtube.com/watch?v=0NwA9xxxtHw">This</a> is a nice
+explanation.</p>
+<p>We can clearly see that there is an effect of place of articulation
+(POA) on spectral peak, which decreases the further back in the mouth
+the constriction is. So palatal fricatives have the lowest spectral
+peak, which makes sense aerodynamically as with the back constriction
+there is a large resonating cavity in front. The longer the cavity
+(often modeled as a tube), the lower the resonance. If the front cavity
+is modeled as a tube that’s open on both ends, then it’s what is called
+a “half-wave” resonator and the resonances are described by: <span
+class="math display">\[F_n = \frac{nv}{2L}\]</span></p>
+<p>With <em>L</em> in the denominator being the length of the tube, it’s
+clear that as it gets longer, the frequency of the loudest resonance
+decreases.</p>
+<div id="acoustic-salience" class="section level2">
+<h2>Acoustic salience</h2>
+<p>Notice that the two dental fricatives (f, th) are <em>very</em>
+similar in their spectral peak locations (~8kHz) and nearly identical in
+their spectral means. The overall similarity between the two is
+reflected in some sound changes (th~f in some dialects of English) as
+well as patterns in infant speech perception. Young infants are thought
+to be able to discriminate contrasts from both native and non-native
+sound systems, yet this contrast between fricatives involving dental
+articulation gives them problems. Why? because they sound the same as
+evidenced by the similar spectral peaks, which is how our auditory
+system resolves POA for fricatives.</p>
 </div>
-<div id="praat-vot-measuring" class="section level2">
-<h2>Praat VOT measuring</h2>
-<p>For each of these sound files, measure the VOT and put it in a
-spreadsheet. Find the mean for each place of articulation. Can you make
-some generalizations?</p>
-<p>pa-ta (ret) -ka from Hindi</p>
-<p><audio src="sounds/praat/pa1.wav" controls=""><a
-href="sounds/praat/pa1.wav">pa-Hindi</a></audio> <audio
-src="sounds/praat/ta1.wav" controls=""><a
-href="sounds/praat/ta1.wav">Ta-Hindi</a></audio> <audio
-src="sounds/praat/Ka1.wav" controls=""><a
-href="sounds/praat/Ka1.wav">ka-Hindi</a></audio></p>
-<p>pa-ta (dental)-ka from Mandarin</p>
-<p><audio src="sounds/praat/manPa1.wav" controls=""><a
-href="sounds/praat/manPa1.wav">pa-Mandarin</a></audio> <audio
-src="sounds/praat/manTa1.wav" controls=""><a
-href="sounds/praat/manTa1.wav">ta-Mandarin</a></audio> <audio
-src="sounds/praat/manKa1.wav" controls=""><a
-href="sounds/praat/manKa1.wav">ka-Mandarin</a></audio></p>
+</div>
+<div id="r-exercises-descriptive-statistics" class="section level1">
+<h1>R exercises (Descriptive statistics)</h1>
+<p>The basic reporting of any quantitative data includes what are called
+<em>descriptive statistics</em>. These include the <em>parameters</em>
+of <strong>mean</strong> (<em>M</em>), or the average value, the
+<strong>standard deviation</strong> of the sample (<em>SD</em>), and
+perhaps some additional measures of the variance in the data like the
+<strong>quartile ranges</strong>. Let’s look at how we get these in
+R.</p>
+<p>Let’s go back to our Tamil data from earlier. It’s <a
+href="tam.csv">here</a> in case you don’t have it in your R
+environment.</p>
+<pre class="r"><code>tam &lt;- read.csv(&#39;tam.csv&#39;) #Read in the data file
+tam &lt;- as_tibble(tam)
+tam</code></pre>
+<pre><code>## # A tibble: 1,458 × 11
+##      sub   POA token syll_dur v_dur    vot    Av   Ahi max23 HiDiff F23Diff
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1    16     3     7    0.313 0.276 0.0371  38     0.4  10.2   37.6     0.4
+##  2    16     3     9    0.290 0.244 0.0461  36.4   0.7  10.5   35.7     0.7
+##  3    16     2     3    0.271 0.243 0.028   51.2   1     7.5   50.2     1  
+##  4    16     1     3    0.340 0.323 0.0168  51.1   1.3  15.8   49.8     1.3
+##  5    16     3    10    0.297 0.260 0.0373  32.3   1.6  10.5   30.7     1.6
+##  6    16     2     4    0.272 0.258 0.0143  38.8   1.9   5.5   36.9     1.9
+##  7    16     4     9    0.211 0.188 0.0231  32.9   2.3   3.2   30.6     2.3
+##  8    20     3    86    0.439 0.387 0.052   34.1  12.8  31.8   21.3     2.3
+##  9    16     3    11    0.267 0.227 0.0395  32.1   2.4  13.3   29.7     2.4
+## 10    16     2     5    0.230 0.212 0.0173  40.8   2.9  -0.8   37.9     2.9
+## # … with 1,448 more rows</code></pre>
+<p>Let’s examine the “HiDiff” measurement using the histogram function.
+In order to select the column “HiDiff” you have to specify the dataframe
+(<strong>df</strong>) followed by “$” then the column name. So in this
+case, “tam$HiDiff”:</p>
+<pre class="r"><code>hist(tam$HiDiff)
+abline(v = mean(tam$HiDiff), lty =2, lwd= 2) #This adds a line at the mean. &quot;lty&quot; is the line type, 2 is dashed; &quot;lwd&quot; is the line width</code></pre>
+<p><img src="jongman_files/figure-html/unnamed-chunk-2-1.png" width="4200" /></p>
+<p>We can see here that the distribution of the HiDiff measurement has a
+nice shape to it. That shape is modal (it has a mode or section where
+most of the data lie) that is called a <strong>normal
+distribution</strong> or <strong>Gaussian distribution</strong>.</p>
+<p>We can examine the mean and the standard deviation:</p>
+<pre class="r"><code>mean(tam$HiDiff)</code></pre>
+<pre><code>## [1] 40.61835</code></pre>
+<pre class="r"><code>sd(tam$HiDiff)</code></pre>
+<pre><code>## [1] 13.42285</code></pre>
+<p>I hope you have an intuitive sense of what <em>mean</em> means. It’s
+always good to think of the mean as the <em>model</em> of the data,
+which can then be used to make predictions. Keep in mind that this is
+the mean of a sample from the population of all HiDiff measurements. We
+don’t have access to all of the HiDiffs that exist in the world, so the
+sample is used to estimate the population parameters.</p>
 </div>
 
 
@@ -494,6 +513,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {

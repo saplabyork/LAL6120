@@ -10,4 +10,6 @@ navbar:
       href: week2VOTnotes.html
     - text: "Hillenbrand et al. (1995)"
       href: hillenbrand.html
+    - text: "Jongman et al. (2000)"
+      href: jongman.html
 output_dir: "docs"
