@@ -12,4 +12,6 @@ navbar:
       href: hillenbrand.html
     - text: "Jongman et al. (2000)"
       href: jongman.html
+    - text: "Zellou and Tamminga (1994)"
+      href: zellou.html
 output_dir: "docs"
