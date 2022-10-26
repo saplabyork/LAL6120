@@ -96,3 +96,6 @@ If we look at the model estimates, you see that there are two significant predic
 <p align="center">
   <img src="images/fits.png">
 </p>
+
+The interpretation here is that people born between 1965 and 1985 are producing vowels with less nasality (larger A1–P0), while people born both earlier and later in the century
+produce more nasality (smaller A1–P0).
