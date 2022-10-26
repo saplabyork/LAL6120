@@ -435,6 +435,63 @@ this:</p></li>
 <p align="center">
 <img src="images/sample_spectrum_5kMax.png">
 </p>
+<ul>
+<li>Examine the P0 and A1 amplitudes and take note of them. We would
+expect A1-P0 to be greater (i.e., less nasal) in tokens of “bad” than in
+“mad”. But what if I’m just nasal? <span
+class="math inline">\(\rightarrow\)</span> what does this mean?</li>
+</ul>
+</div>
+<div id="nasality-in-apparent-time" class="section level1">
+<h1>Nasality in apparent time</h1>
+<p>“Apparent time”, from what I understand, is sortof like a
+cross-sectional study. Older people are compared with younger people to
+see if they differ along some linguistic variable. There is a nice Wiki
+entry <a
+href="https://en.wikipedia.org/wiki/Apparent-time_hypothesis">here</a>.
+The point is to see if people in Philadelphia have changed in their
+degree of nasality over time. I’m not particularly interested in the
+research question, but I think the overall method is a good (and well
+worn) one.</p>
+<p align="center">
+<img src="images/age_nasality.png">
+</p>
+<p>In the plot above, you’ll notice that the individual points are
+overlain with a curve. This curve is the “loess” regression curve. It’s
+a “local” regression that helps us better visualize trends in the data.
+This is <em>not</em> the model of the data (i.e., it’s not generated in
+the paper by the models they’ve presented). Here is a nice <a
+href="https://www.youtube.com/watch?v=Vf7oJ6z2LCc">video</a> explaining
+loess curves.</p>
+<p>They’ve included a lot of predictors in their models, including the
+expected Age of the participant, birthyear, but also word frequency,
+vowel height (I think this was binary, low vs. mid), vowel duration
+(normalized using log transformation), as well as conditional
+probability of the nasal (“the frequency with which a segment or
+sequence of segments occurs in a given position in all the lexicalitems
+of a language”), and neighborhood density of a word (“Neighbors are
+defined as words that differ from the target word by the addition,
+deletion, or substitution of a single phoneme”).</p>
+<p>They use a Bayesian approach to modeling the data. This is beyond the
+scope of this course, but we’ll trust them in their interpretation of
+the significant findings. It presents 95% confidence intervals (in Bayes
+terminology it’s called the “credible interval”) which means that there
+is a 95% chance that the true mean lies within the upper and lower
+bounds.</p>
+<p align="center">
+<img src="images/zellou_mcmc.png">
+</p>
+<p>If we look at the model estimates, you see that there are two
+significant predictors to nasality, Birthyear (cubic) and log vowel
+duration. What’s the “cubic”? Notice that the data are not neatly
+linear, that is, a line wouldn’t bes model the data. What other shapes
+best model the actual data? There are different types of curves. The
+ones we see a lot of in speech analysis are “quadratic”,
+“cubic”,“logistic”, and “exponential”. This picture shows you the
+general differences:</p>
+<p align="center">
+<img src="images/fits.png">
+</p>
 </div>
 
 
