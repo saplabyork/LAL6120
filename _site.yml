@@ -14,4 +14,6 @@ navbar:
       href: jongman.html
     - text: "Zellou and Tamminga (1994)"
       href: zellou.html
+    - text: "Beddor (2009)"
+      href: beddor.html
 output_dir: "docs"

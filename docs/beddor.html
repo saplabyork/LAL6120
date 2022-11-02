@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Beddor (2009)</title>
+
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link rel="shortcut icon" href="images/logo.jpeg">
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">LAL6120</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="acoustics_basics.html">Acoustics Basics</a>
+</li>
+<li>
+  <a href="week2VOTnotes.html">VOT Notes</a>
+</li>
+<li>
+  <a href="hillenbrand.html">Hillenbrand et al. (1995)</a>
+</li>
+<li>
+  <a href="jongman.html">Jongman et al. (2000)</a>
+</li>
+<li>
+  <a href="zellou.html">Zellou and Tamminga (1994)</a>
+</li>
+<li>
+  <a href="beddor.html">Beddor (2009)</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Beddor (2009)</h1>
+
+</div>
+
+
+<style type="text/css">
+  body{
+  font-size: 12pt;
+}
+</style>
+<div id="variation-rightarrow-sound-change" class="section level1">
+<h1>Variation <span class="math inline">\(\rightarrow\)</span> sound
+change</h1>
+<p>Beddor’s paper follows in a long tradition (beginning with some 19th
+C. philologists like de Courtenay and Passy) of thinkers about language
+who identify the seeds of sound change in natural variation that arises
+in certain phonological environments. Perhaps the most famous of these
+ideas was developed by John Ohala (my first phonetics teacher). Ohala
+located one of the sources of sound change in the listener. Read <a
+href="papers/ohala1981.pdf">this</a> for details.</p>
+<p>The Beddor paper is a <em>position paper</em> in that it proposes
+that sound change can happen as a result of two factors located in
+(synchronic) articulation, acoustics, and perception:</p>
+<ol style="list-style-type: decimal">
+<li>Coarticulation resulting in a temporal covariation between source
+and recipient articulations and acoustics (effect)</li>
+<li>Perceptual equivalence between the source and the effect</li>
+</ol>
+<p>Not only does the source sound <em>bleed</em> into the adjacent
+sound, but some aspect of that source is treated as perceptually “the
+same” by the listener.</p>
+</div>
+<div id="coarticulation" class="section level1">
+<h1>Coarticulation</h1>
+<p>Coarticulation refers to the overlap in articulatory gestures, either
+locally or at a distance. Why does this happen? It reveals the nature of
+our phonological organization that “downstream” phones begin to be
+articulated in their anticipation, provided they don’t have phonetically
+deleterious consequences. Our perceptual system is very good at
+factoring out coarticulatory information. BUT, Ohala proposes that there
+might be times when the coarticulatory information is
+<strong>not</strong> factored out and the acoustic effect of the source
+is not properly attributed. For example, when you hear an English
+speaker say “kit”, the velar stop is actually articulated more front in
+the mouth than when preceding other vowels, yet we still hear it as a
+“k.” Try slowly articulating “kit” and “cot”. Below are the [k] portions
+from both:</p>
+<p><audio src="sounds/ki.wav" controls=""><a
+href="sounds/ki.wav">Audio</a></audio> <audio src="sounds/kaw.wav"
+controls=""><a href="sounds/kaw.wav">Audio</a></audio></p>
+<p>And the corresponding wide-band spectra taken at the center of the
+aspiration noise:</p>
+<p align="center">
+<img src="images/kikaw_spec.png">
+</p>
+<p>The red line (envelope) is the back vowel in “cot” and the black line
+is “kit.” Notice that the energy in “cot” is high in the lower band of
+the spectrum, reflecting the larger oral cavity for the [k] when it is
+in the back vowel position, or in anticipation of the back vowel in
+“cot.”</p>
+<p>The result of misattributing the effect of the source (in the
+“kit”/“cot” case) would be the listener interpreting the two [k]s as
+being different. This would be a *mini sound-change.” BUT,
+coarticulation is ultimately informative and supports listeners’
+perception of the source…so how can it be both infomative and
+potentially misleading (leading to mini sound changes which can
+ultimately result in a major sound change)? $right arrow$ this is the
+question Beddor asks. She concludes that indeed, coarticulation can both
+be informative as well as serve as the mechanism for certain sound
+changes.</p>
+</div>
+<div id="vn-rightarrow-v" class="section level1">
+<h1>ṼN <span class="math inline">\(\rightarrow\)</span> Ṽ</h1>
+<p>Anticipatory vowel nasalization occurs when the velum begins lowering
+during vowel production in anticipation of the following nasal
+consonant. Recall that this results in coupling between the oral and
+nasal cavities, decreasing the amplitude difference between A1 and P0.
+Historically, ṼN has resulted in Ṽ in languages like French, where the
+nasal consonant disappears, with nasality remaining on the vowel. Beddor
+hypothesized that there is a stage in this history where the duration of
+the source (nasal murmur) is inversely related to the duration of vowel
+nasalization. In languages (like English) which does not have
+contrastive vowel nasalization, the prediction is that the “nasal
+gesture” (lowered velum) is stable but aligned with the vowel and
+post-vowel consonant variably.</p>
+<p>Beddor is looking at how the nasal gesture is assigned variably by
+speaker in VNC contexts and how it systematically related to the voicing
+feature of the C. It had been reported in previous literature that
+vowels are more nasalized with accompanying shorter nasal consonants in
+English and other languages.</p>
+<p align="center">
+<img src="images/coart_nas.png">
+</p>
+<p><br />
+</p>
+</div>
+<div id="the-experiment" class="section level1">
+<h1>The experiment</h1>
+<p>Only 9 speakers(!), and only 6 for the data analysis reading a word
+list with multiple repetitions of C(C)V(N)C words like <em>bet, bent,
+bed, bend</em> in a carrier phrase “Say ___ quickly.” Beddor examines
+the extent of nasalization (percentage of the vowel) relative to the
+duration of the nasal consonant.</p>
+<p align="center">
+<img src="images/vnas_ndur.png">
+</p>
+<p>But, there is also tons of variation between speakers. For some
+speakers, the relationship netween N duration and V nasalization
+disappears when the following C is voiceless.</p>
+<p>Let’s look at some VNC tokens and see if there is this sort of velar
+gesture consistency in my productions of “bed”, “bend”, “bet”,
+“bent”.</p>
+<p>Download <a href="sounds/bed_bend.wav">here</a></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
