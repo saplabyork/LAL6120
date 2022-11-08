@@ -54,7 +54,7 @@ And the corresponding wide-band spectra taken at the center of the aspiration no
 </p>
 The red line (envelope) is the back vowel in "cot" and the black line is "kit." Notice that the energy in "cot" is high in the lower band of the spectrum, reflecting the larger oral cavity for the [k] when it is in the back vowel position, or in anticipation of the back vowel in "cot."
 
-The result of misattributing the effect of the source (in the "kit"/"cot" case) would be the listener interpreting the two [k]s as being different. This would be a *mini sound-change." BUT, coarticulation is ultimately informative and supports listeners' perception of the source...so how can it be both infomative and potentially misleading (leading to mini sound changes which can ultimately result in a major sound change)? \$right arrow$ this is the question Beddor asks. She concludes that indeed, coarticulation can both be informative as well as serve as the mechanism for certain sound changes.
+The result of misattributing the effect of the source (in the "kit"/"cot" case) would be the listener interpreting the two [k]s as being different. This would be a *mini sound-change." BUT, coarticulation is ultimately informative and supports listeners' perception of the source...so how can it be both infomative and potentially misleading (leading to mini sound changes which can ultimately result in a major sound change)? $\rightarrow$ this is the question Beddor asks. She concludes that indeed, coarticulation can both be informative as well as serve as the mechanism for certain sound changes.
 
 # ṼN $\rightarrow$ Ṽ
 
