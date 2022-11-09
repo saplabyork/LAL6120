@@ -16,4 +16,6 @@ navbar:
       href: zellou.html
     - text: "Beddor (2009)"
       href: beddor.html
+    - text: "Hombert et al. (1979)"
+      href: hombert1979.html
 output_dir: "docs"

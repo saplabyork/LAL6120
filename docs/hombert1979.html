@@ -11,7 +11,7 @@
 
 
 
-<title>Hillenbrand et al. (1995)</title>
+<title>Hombert, Ohala, and Ewan (1979)</title>
 
 <script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -367,7 +367,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Hillenbrand et al. (1995)</h1>
+<h1 class="title toc-ignore">Hombert, Ohala, and Ewan (1979)</h1>
 
 </div>
 
@@ -377,128 +377,133 @@ div.tocify {
   font-size: 12pt;
 }
 </style>
-<div id="hillenbrand-getty-clark-and-wheeler-1995"
+<div id="intrinsic-perturbation-used-extrinsically"
 class="section level1">
-<h1>Hillenbrand, Getty, Clark, and Wheeler (1995)</h1>
-<p>This paper (is now old) but was pretty influential at the time
-because it aimed to replicate a (much) earlier paper by <a
-href="images/gordon-peterson.jpeg">Peterson</a> and Barney (1952) that
-exemplified one of the <em>problems of speech perception</em>, namely
-that phonological object (in this case a vowel) can have multiple
-acoustic realizations both within and between speakers (of varying age
-and gender). P&amp;B recorded and analyzed canonical American English
-vowels produced in h-V-d contexts as produced by men, women, and
-children. The resulting image has been used in countless descriptions of
-the complexity of vowel spaces:</p>
+<h1>“Intrinsic perturbation used extrinsically”</h1>
+<p>This is a rather “classic” paper on the birth of tone, or
+“tonogenesis.” In the history of many languages which previously had
+stop voicing contrasts (in syllable onset position), tone develops when
+the contrast is lost. Typically previously voiced stops develop into low
+tone, and voiceless into high tone. The authors suggest that this type
+of change reflects an “intrinsic perturbation used extrinsically.”
+Keeping with Ohala’s theory of a listener-based sound change process,
+the listener potentially misattributes the natural perturbation of the
+fundamental frequency associated with voicing to the vowel fundamental
+frequency itself. The entirety of the paper presents various theories as
+to why pitch is perturbed in voicing conditions. In CVs, if C is voiced,
+the following vowel’s F0 is lower than when C is voiceless.</p>
 <p align="center">
-<img src="images/PetersonBarney52.png">
+<img src="images/pitch_perturb.png" width=50% height=50%>
 </p>
-<p>Hillbrand attempts to revisit P&amp;B. Note that Hillenbrand is in
-central Michigan, which is quite different from the data P&amp;B
-collected near the Bell Laboratories in New Jersey.</p>
-<div id="pbs-measurements" class="section level2">
-<h2>P&amp;B’s measurements</h2>
-<ul>
-<li>F1-F3 (Hz)</li>
-<li>F1-F3 (amplitude)</li>
-<li>F0</li>
-</ul>
-<p>All measurements made from the “steady state” portion of the vowel.
-Why? <span class="math inline">\(\rightarrow\)</span> The middle section
-of a vowel is thought to be least affected by neighbouring segments
-(i.e., least coarticulation).</p>
-<p>Let’s do a quick exercise examining vowels and variability. Download
-the following three .wav files. Each has a list of hVd words in a
-carrier sentence. The vowels are: “hawed,” “heed,” “hood” (/u/ vowel),
-“had,” “head,” and “hud.”</p>
-<p><a href="sounds/hvd1.wav">hVd1</a> <a href="sounds/hvd2.wav">hvd2</a>
-<a href="sounds/hvd3.wav">hvd3</a></p>
-<p>Cut up these files and make vowel midpoint measurements (F1 and F2)
-for the target sounds. Then input your measurements into an Excel
-document and then save it as a .csv file to be read into R.</p>
-<p align="center">
-<img src="images/hawed.png" width=50% height=50%>
+<p><br />
 </p>
-<p>Here are my measurements of F1, F2 at the vowel midpoints <span
-class="math inline">\(\rightarrow\)</span> <a
-href="hvd_data.csv">data</a></p>
-<pre><code>## Rows: 21 Columns: 4
-## ── Column specification ──────────────────────────────────────────────────
-## Delimiter: &quot;,&quot;
-## chr (1): vowel
-## dbl (3): token, F1, F2
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre><code>## # A tibble: 21 × 4
-##    token vowel    F1    F2
-##    &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1     1 aw      665  1028
-##  2     1 i       271  2348
-##  3     1 u       304  1313
-##  4     1 o       433  1055
-##  5     1 ae      780  1595
-##  6     1 E       619  1796
-##  7     1 U       630  1318
-##  8     2 aw      666  1029
-##  9     2 i       281  2378
-## 10     2 u       319  1336
-## # … with 11 more rows</code></pre>
-<p>Now we can plot a rudimentary <strong>scatterplot</strong> of these
-data:</p>
-<pre class="r"><code>ggplot(hvd, aes(x=F2, y=F1, label=vowel)) + geom_text() + scale_x_reverse() + scale_y_reverse()</code></pre>
-<p><img src="hillenbrand_files/figure-html/unnamed-chunk-2-1.png" width="4200" /></p>
-<pre class="r"><code>ggplot(hvd, aes(x=F2, y=F1-F2, label = vowel)) + geom_text() + scale_x_reverse() + scale_y_reverse()</code></pre>
-<p><img src="hillenbrand_files/figure-html/unnamed-chunk-3-1.png" width="4200" /></p>
-<p>Can we look at the data in any other way? How about boxplots? A
-boxplot shows mean values of each group with some variance statistics
-(error bars, quartile ranges, etc.). It might be not very useful for the
-present data but let’s try it nonetheless.</p>
-<pre class="r"><code>ggplot(hvd, aes(vowel, F1)) + geom_boxplot()</code></pre>
-<p><img src="hillenbrand_files/figure-html/unnamed-chunk-4-1.png" width="4200" /></p>
+<p>How do we account for this in terms of the articulatory mechanics of
+voicing? The authors present two hypotheses.</p>
 </div>
-</div>
-<div id="lpc" class="section level1">
-<h1>LPC</h1>
-<p>Hillenbrand et al. use <strong>LPC</strong> analysis to analyze the
-formants in their data. There are plenty of descriptions of what LPC
-(linear predictive coding) is so we won’t go down that road. It’s safe
-to say that LPC approximates the formant peaks (models the resonances of
-the vocal tract) without the source characteristics. Remember that our
-model of vowel acoustics is based on <em>source-filter theory</em>, with
-the source spectrum (fundamental frequency and higher order harmonics
-that are related to the F0) provided by the glottal oscillation and the
-filter being the resonant characteristics of the tubes making up the
-pharynx and oral cavity. LPC, through a lot of fancy math digital signal
-processing, figures out what the formants are based on adjacent
-samples.</p>
-<p>Let’s do an LPC analysis in Praat and compare it to the FFT that
-we’re used to. As a rule of thumb, we expect 1 formant every 1000Hz, so
-based on the sample rate of the file. First resample your file at a
-lower rate (try 10 or 11kHz).</p>
-<ul>
-<li>Sound &gt; Convert &gt; Resample</li>
-<li>Go to the midpoint of the vowel you want to analyze</li>
-<li>Analyze Spectrum &gt; To LPC (autocorrelation)</li>
-<li>Prediction order is important! The sampling rate is 10000Hz (say),
-so we would expect 10 formants. Multiply the number of expected formants
-x 2, then add 2. So (10 x 2) + 2 = 22</li>
-<li>From the LPC object &gt; To Spectrum (slice) &gt; use the time from
-the middle of the vowel</li>
-</ul>
-<p>In the image below you can see the consistency between the LPC peaks
-(black) and the FFT harmonics (red, the loudest peaks are the
-formants):</p>
+<div id="aerodynamic-hypothesis" class="section level1">
+<h1>Aerodynamic hypothesis</h1>
+<p>The aerodynamic hypothesis is perhaps the most common account. During
+voiced stop closure, oral pressure gradually builds up [behind the
+occlusion] <span class="math inline">\(\rightarrow\)</span> this has the
+effect of decreasing the pressure drop across the vocal cords (the
+pressure differential is less than if there is no occlusion).</p>
+<blockquote>
+<p>Recall that for voicing to occur subglottal pressure HAS to be higher
+than oral pressure. The movement of air across the vocal folds that
+occurs as a result of the differential causes them to oscillate.</p>
+</blockquote>
+<p>The resulting decrease in pressure drop has the effect of slowing
+down (or lowering) the F0. When the occlusion is released, then the oral
+pressure falls to atmospheric pressure and the subglottal pressure is
+high again, resulting in higher F0 for the vowel.</p>
+<p>So the predicted F0 following voiced stop would be low (small
+pressure differential) to higher (normal voicing). SO, the perturbation
+is prected to only last during the initial portion of the vowel. But
+this is not what is observed in laboratory experiments.</p>
 <p align="center">
-<img src="images/lpc_fft.png">
+<img src="images/pitch_perturb3.png">
+</p>
+<p><br />
+</p>
+<p>It looks like the perturbtation extends throught the vowel, or at
+least the first 100ms in one data set. SO what is happening? There are
+competing theories as to why F0 after voiced stops is low.</p>
+</div>
+<div id="vocal-cord-tension-hypothesis" class="section level1">
+<h1>Vocal-cord tension hypothesis</h1>
+<p>There are two versions of this hypothesis, both relating to the
+tension across the vocal folds, but either in horizontal or vertical
+positions:</p>
+<ol style="list-style-type: decimal">
+<li>Horizontal tension (Halle and Stevens, 1971): When making the
+voiced-voiceless disctinction the vocal cords are in different
+positions/tensions. These different positions are affected by horizontal
+tension. The horizontal tension is slack when voicing, and taut to
+prevent voicing for voiceless stops. These vocal fold states essentially
+bleed into the adjacent vowel affecting the F0. Apparently Halle and
+Stevens claim that this should occur in postvocalic Cs as well, and this
+makes sense if the vocal folds start to slacken in anticipation of the
+voicing of the stop.</li>
+</ol>
+<p align="center">
+<img src="images/vocal_cords.jpeg">
+</p>
+<p><br />
+</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Vertical tension (Ohala, Ewan, Stevens): This is essentially the
+same as the horizontal tension hypothesis, but makes different claims
+regarding the nature of preconsonantal vowel F0. I struggle to
+understand how the vertical tension hypothesis’s claim is functionally
+different from the horizontal tension claim as the paper doesn’t really
+clearly present it. But rather the paper presents lots of evidence for
+why we should <em>not</em> expect post-vocalic Cs to affect the F0 of
+the preceding vowel. The vertical tension hypothesis is supported by
+proxy evidence from larynx height. The vertical position of the larynx
+(measured using a thyroumbrometer) differs in voiced vs. voiceless
+stops.</li>
+</ol>
+<p align="center">
+<img src="images/larynx_height.png" width=50% height=50%>
+</p>
+<p><br />
 </p>
 </div>
-<div id="assignment-1" class="section level1">
-<h1>Assignment 1</h1>
-<p>You can download Assignment 1 <a
-href="docs/LAL6120_Assignment1.pdf">here</a>. You’ll need some way to
-record your voice onto your computer so that you can analyze in Praat
-and then make some plots in R.</p>
+<div id="measuring-pitch-perturbation" class="section level1">
+<h1>Measuring pitch perturbation</h1>
+<p>Download this <a href="sounds/pitiki.wav">file</a></p>
+<p>We’ll look at how to examine fundamental frequency, how to print
+pitch tracks (a ala Hombert), etc.</p>
+</div>
+<div id="r" class="section level1">
+<h1>R</h1>
+<p>Let’s try to make a plot that compares one dichotomous variable
+against a continuous variable and make one for each group. First read in
+some data. We’ll use the built-in data set called ‘mtcars’. But you will
+use your own data from the pitch exercise.</p>
+<pre class="r"><code>data(mtcars) #Read in the data file
+head(mtcars, 10) #print the first 10 lines</code></pre>
+<pre><code>##                    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360        14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D         24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230          22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280          19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</code></pre>
+<p>Let’s plot gear (3 vs. 4) by mpg (continuous) and make a panel for
+each Cylinder:</p>
+<pre class="r"><code>mtcars$gear &lt;- as.factor(mtcars$gear)
+basic &lt;- ggplot(mtcars, aes(x=gear, y=mpg, group=gear)) +
+  geom_boxplot(aes(fill=gear))
+basic</code></pre>
+<p><img src="hombert1979_files/figure-html/unnamed-chunk-2-1.png" width="4200" /></p>
+<p>Now lets split this up for each cyl (4, 6, 8):</p>
+<pre class="r"><code>basic + facet_grid(. ~ cyl)</code></pre>
+<p><img src="hombert1979_files/figure-html/unnamed-chunk-3-1.png" width="4200" /></p>
 </div>
 
 
