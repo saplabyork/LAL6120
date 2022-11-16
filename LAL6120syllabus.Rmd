@@ -2,6 +2,8 @@
 title: "LAL6120syllabus"
 output: 
   html_document:
+    includes:
+      in_header: "favicon.html"
     theme: paper
 ---
 
